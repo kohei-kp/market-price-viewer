@@ -1,6 +1,8 @@
 .DS_Store
-./vendor/*
-./bin/*
-./screenshot/*
-./htdocs/assets/sreenshot/*
+vendor
+vendor/**
+bin
+bin/**
+screenshot/**
+htdocs/assets/sreenshot/**
 
