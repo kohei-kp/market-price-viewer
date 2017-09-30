@@ -5,4 +5,6 @@ bin
 bin/**
 screenshot/**
 htdocs/assets/sreenshot/**
+log
+log/**
 
