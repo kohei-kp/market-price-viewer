@@ -8,4 +8,28 @@ class Graph extends MY_Controller
         parent::__construct();
     }
 
+    /**
+     * グラフ一覧を取得する
+     *
+     */
+    public function search()
+    {
+    }
+
+    /**
+     * グラフを作成する
+     *
+     */
+    public function create()
+    {
+    }
+
+    /**
+     * グラフを削除する
+     *
+     */
+    public function delete()
+    {
+    }
+
 }
