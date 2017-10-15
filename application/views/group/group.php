@@ -14,8 +14,8 @@
       <section id="forms">
         <div class="row">
           <div class="input-field col s6 offset-s3">
-            <input placeholder="Group Name" id="group_name0" name="group_name0" type="text" class="validate">
-            <label for="group_name0">Group Name</label>
+            <input placeholder="Group Name" id="group_name" name="group_name" type="text" class="validate">
+            <label for="group_name">Group Name</label>
           </div>
         </div>
       </section>
@@ -26,24 +26,3 @@
     </form>
   </div>
 </div>
-
-<script>
-const $add_btn = $('#add-btn');
-
-$add_btn.on('click' , e => {
-  const $forms = $('#forms');
-  const row_number = $forms.children('.row').toArray().length;
-
-  const content = `
-    <div class="row">
-      <div class="input-field col s6 offset-s3">
-        <input placeholder="Group Name" id="group_name${row_number}" name="group_name${row_number}" type="text" class="validate">
-        <label for="group_name${row_number}">Group Name</label>
-      </div>
-    </div>
-  `;
-
-  $forms.append(content);
-  Materialize.updateTextFields();
-});
-</script>

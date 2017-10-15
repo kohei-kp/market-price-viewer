@@ -57,6 +57,7 @@ $route['translate_uri_dashes'] = FALSE;
 $route['top/(.*)'] = 'top/index';
 
 // グループ登録
+$route['group/create'] = 'group/create';
 $route['group/(.*)'] = 'group/index';
 
 // カード登録
