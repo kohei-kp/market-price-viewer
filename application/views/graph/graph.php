@@ -7,7 +7,7 @@
         echo '<div class="col s12 m6">'; // ← 可変にする
         echo '<div class="card">';
         echo '<div class="card-image">';
-        echo '<img src="' . base_url() . 'assets/image/' . $card['card_id'] . '.jpg">';
+        echo '<img src="' . base_url() . 'assets/screenshot/' . $card['card_id'] . '.jpg">';
         echo '<a href="' . $card['url'] . '" class="btn-floating btn halfway-fab waves-effect waves-light tooltipped" target="_blank" data-position="bottom" data-delay="50" data-tooltip="Open market price chart.">';
         echo '<i class="material-icons left">multiline_chart</i></a>';
         echo '</div>';

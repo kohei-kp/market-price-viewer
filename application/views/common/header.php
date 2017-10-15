@@ -15,11 +15,11 @@
 
 <nav>
 <div class="nav-wrapper">
-  <a href="#" class="brand-logo">MTG Market Price Viewer</a>
+  <a href="/" class="brand-logo">MTG Market Price Viewer</a>
   <ul id="nav-mobile" class="right hide-on-med-and-down">
-    <li><?php echo anchor('/group', 'Group'); ?></li>
-    <li><?php echo anchor('/card', 'Card'); ?></li>
-    <li><?php echo anchor('/graph', 'Graph'); ?></li>
+    <li><?php echo anchor('/group', 'グループ追加'); ?></li>
+    <li><?php echo anchor('/card', 'カード追加'); ?></li>
+    <li><?php echo anchor('/', 'グラフ一覧'); ?></li>
   </ul>
 </div>
 </nav>

@@ -22,5 +22,9 @@
     "require": {
         "jonnyw/php-phantomjs": "4.*",
         "codeigniter/framework": "dev-master"
+    },
+    "require-dev": {
+        "kenjis/ci-phpunit-test": "^0.15.0",
+        "phpunit/phpunit": "^4.8"
     }
 }
