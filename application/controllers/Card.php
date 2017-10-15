@@ -7,20 +7,33 @@ class Card extends CI_Controller
     {
         parent::__construct();
         $this->load->helper('date');
-        $this->load->model('db_card');
+        $this->load->model(['db_card', 'db_group']);
     }
 
     public function index()
     {
+        $group_data = [];
+        foreach ($this->db_group->get_all() as $group)
+        {
+            $group_data[$group['group_id']] = $group['group_name'];
+        }
+
+        $data = [
+            'group_data' => $group_data
+        ];
+
         $this->load->view('common/header', []);
-        $this->load->view('card/card', []);
+        $this->load->view('card/card', $data);
         $this->load->view('common/footer', []);
     }
 
     public function create()
     {
         $posts = $this->input->post(NULL, TRUE);
+        $group_id = $posts['group_list'];
+
         unset($posts['action']);
+        unset($posts['group_list']);
 
         $index = 0;
         $data = [];
@@ -49,7 +62,7 @@ class Card extends CI_Controller
             else if (preg_match('/left/', $key))
             {
                 $data[$index]['left'] = $value;
-                $data[$index]['group_id'] = 1;
+                $data[$index]['group_id'] = $group_id;
                 $index++;
             }
         }

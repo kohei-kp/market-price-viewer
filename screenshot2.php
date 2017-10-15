@@ -24,7 +24,7 @@ try
         $response = $client->getMessageFactory()->createResponse();
 
         // 保存先
-        $file = './htdocs/assets/image/' . $result['card_id'] . '.jpg';
+        $file = './htdocs/assets/screenshot/' . $result['card_id'] . '.jpg';
         $request->setOutputFile($file);
 
         $client->send($request, $response);

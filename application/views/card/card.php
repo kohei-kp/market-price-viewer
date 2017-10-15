@@ -13,6 +13,12 @@
 
     <section id="forms">
       <div class="row">
+        <div class="input-field col s12">
+          <?php echo form_dropdown('group_list', $group_data); ?>
+          <label>Materialize Select</label>
+        </div>
+      </div>
+      <div class="row">
         <div class="input-field col s3">
           <input placeholder="Card Name" id="card_name0" name="card_name0" type="text" class="validate">
           <label for="card_name0">Card Name</label>
@@ -49,6 +55,8 @@
 
 <script>
 const $add_btn = $('#add-btn');
+
+$('select').material_select();
 
 $add_btn.on('click', e => {
 console.log(e);
