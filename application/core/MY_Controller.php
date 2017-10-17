@@ -24,7 +24,7 @@ class MY_Controller extends CI_Controller
      * JSONとして出力
      *
      */
-    public function output_josn()
+    public function output_json()
     {
         $CI =& get_instance();
         $CI->output->set_content_type('application/json');

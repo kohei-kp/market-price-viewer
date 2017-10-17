@@ -6,6 +6,7 @@ class Group extends MY_Controller
     public function __construct()
     {
         parent::__construct();
+        $this->load->model('db_group');
     }
 
     /**
@@ -14,6 +15,9 @@ class Group extends MY_Controller
      */
     public function search()
     {
+        $this->responce->result = TRUE;
+        $this->responce->group_list = $this->db_group->search([]);
+        $this->output_json();
     }
 
     /**
@@ -22,6 +26,8 @@ class Group extends MY_Controller
      */
     public function create()
     {
+        $this->responce = TRUE;
+        $this->output_json();
     }
 
     /**
@@ -30,6 +36,8 @@ class Group extends MY_Controller
      */
     public function edit()
     {
+        $this->responce->result = TRUE;
+        $this->output_json();
     }
 
     /**
@@ -38,6 +46,8 @@ class Group extends MY_Controller
      */
     public function delete()
     {
+        $this->responce->result = TRUE;
+        $this->output_json();
     }
 
 }

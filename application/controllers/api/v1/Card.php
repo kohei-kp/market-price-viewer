@@ -6,6 +6,7 @@ class Card extends MY_Controller
     public function __construct()
     {
         parent::__construct();
+        $this->load->model('db_card');
     }
 
     /**
@@ -14,7 +15,9 @@ class Card extends MY_Controller
      */
     public function search()
     {
-
+        $this->responce->result = TRUE;
+        $this->responce->card_list = $this->db_card->search(['group_id' => 1]);
+        $this->output_json();
     }
 
     /**
@@ -23,6 +26,8 @@ class Card extends MY_Controller
      */
     public function create()
     {
+        $this->responce->result = TRUE;
+        $this->output_json();
     }
 
     /**
@@ -31,6 +36,8 @@ class Card extends MY_Controller
      */
     public function edit()
     {
+        $this->responce->result = TRUE;
+        $this->output_json();
     }
 
     /**
@@ -39,6 +46,8 @@ class Card extends MY_Controller
      */
     public function delete()
     {
+        $this->responce->result = TRUE;
+        $this->output_json();
     }
 
 }

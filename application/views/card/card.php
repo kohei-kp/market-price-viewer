@@ -59,7 +59,6 @@ const $add_btn = $('#add-btn');
 $('select').material_select();
 
 $add_btn.on('click', e => {
-console.log(e);
     const $forms = $('#forms');
     const row_number = $forms.children('.row').toArray().length;
 
