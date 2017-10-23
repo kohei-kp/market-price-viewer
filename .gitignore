@@ -5,6 +5,9 @@ bin
 bin/**
 screenshot/**
 htdocs/assets/sreenshot/**
+htdocs/assets/js/bundle.js
+htdocs/assets/js/bundle.js.map
 log
 log/**
-
+node_modules
+node_modules/**
