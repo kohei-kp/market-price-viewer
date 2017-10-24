@@ -18,11 +18,15 @@ module.exports = {
         test: /\.js$/,
         use: 'babel-loader',
         exclude: /(\/node_modules\/|test\.js|\.spec\.js$)/,
+      },
+      {
+        test: /\.css$/,
+        use: 'css-loader'
       }
     ]
   },
   resolve: {
-    extensions: ['.js'],
+    extensions: ['.js', '.css'],
     modules: [
       __dirname,
       path.resolve(__dirname, './node_modules')

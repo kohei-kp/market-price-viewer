@@ -1,3 +1,47 @@
-<div>
-  <p>Hello World</p>
-</div>
+<v-app id="inspire">
+  <v-navigation-drawer
+    persistent
+    v-model="drawer"
+    enable-resize-watcher
+    app
+  >
+  <v-list dense>
+    <v-list-tile @click="">
+      <v-list-tile-action>
+        <v-icon>person</v-icon>
+      </v-list-tile-action>
+      <v-list-tile-content>
+        <v-list-tile-title>Group</v-list-tile-title>
+      </v-list-tile-content>
+    </v-list-tile>
+    <v-list-tile @click="">
+      <v-list-tile-action>
+        <v-icon>label</v-icon>
+      </v-list-tile-action>
+      <v-list-tile-content>
+        <v-list-tile-title>Card</v-list-tile-title>
+      </v-list-tile-content>
+    </v-list-tile>
+    <v-list-tile @click="">
+      <v-list-tile-action>
+        <v-icon>timeline</v-icon>
+      </v-list-tile-action>
+      <v-list-tile-title>Graph</v-list-tile-title>
+    </v-list-tile>
+  </v-list>
+  </v-navigation-drawer>
+  <v-toolbar color="cyan" dark fixed app>
+    <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
+    <v-toolbar-title>Market Price Viewer</v-toolbar-title>
+  </v-toolbar>
+  <main>
+    <v-content>
+      <v-container fluid fill-height>
+        Hello World
+      </v-container>
+    </v-content>
+  </main>
+  <v-footer color="cyan" app>
+    <span class="white--text">&copy; 2017</span>
+  </v-footer>
+</v-app>

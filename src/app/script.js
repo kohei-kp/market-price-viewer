@@ -2,7 +2,10 @@ export default {
   name: 'App',
   components: {
   },
-  data() {
-    return {}
+  data: () => ({
+    drawer: true
+  }),
+  props: {
+    source: String
   }
 };
