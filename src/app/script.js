@@ -1,11 +1,15 @@
+import GraphList from '../GraphList/index.vue';
+
 export default {
   name: 'App',
   components: {
+    'graph-list': GraphList,
   },
-  data: () => ({
-    drawer: true
-  }),
+  data: () => {
+    return {
+      drawer: true
+    }
+  },
   props: {
-    source: String
   }
 };
