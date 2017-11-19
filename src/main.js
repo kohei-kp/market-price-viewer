@@ -1,9 +1,9 @@
 import Vue from 'vue';
-import Vuetify from 'vuetify';
-
+import ElementUI from 'element-ui';
+import 'element-ui/lib/theme-chalk/index.css'
 import AppComponent from './app/index.vue';
 
-Vue.use(Vuetify);
+Vue.use(ElementUI);
 
 const vm = new Vue({
   el: '#app',
