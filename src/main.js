@@ -6,7 +6,7 @@ import Icon from 'vue-awesome/components/Icon.vue';
 import AppComponent from './app/index.vue';
 
 Vue.use(ElementUI);
-Vue.Component('icon', Icon);
+Vue.component('icon', Icon);
 
 const vm = new Vue({
   el: '#app',

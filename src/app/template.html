@@ -1,13 +1,59 @@
 <el-container>
   <el-header style="font-size=12px">
     <span>Market Price Viewer</span>
-    <icon name="beer"></icon>
   </el-header>
   <el-container>
-    <el-aside width="200px">Aside</el-aside>
+
+    <el-aside width="250px">
+      <el-row class="tac">
+        <el-menu
+          default-active="2"
+          class="el-menu-vertical-demo"
+          @open="handleOpen"
+          @close="handleClose"
+        >
+          <el-menu-item-group title="Expansion">
+            <el-menu-item index="1-1">item one</el-menu-item>
+            <el-menu-item index="1-2">item Two</el-menu-item>
+          </el-menu-item-group>
+        </el-menu>
+      </el-row>
+    </el-aside>
+
     <el-container>
-      <el-main>Main</el-main>
-      <el-header>Footer</el-header>
+      <el-main>
+        <template v-for="(card, key) in cards">
+
+          <template v-if="key + 1 % 3 === 0">
+            <el-row>
+
+              <el-col :span="7" :key="card.cardName" :style="{ margin: '5px 5px' }">
+                <el-card :body-style="{ padding: '10px' }">
+                  <img :src="card.src" width="300px" height="150px"> 
+                  <div style="padding: 14px;">
+                    <span>{{ card.cardName }}</span>
+
+                  </div>
+                </el-card>
+              </el-col>
+
+            </el-row>
+          </template>
+
+          <template v-else>
+            <el-col :span="7" :key="card.cardName" :style="{ margin: '5px 5px' }">
+              <el-card :body-style="{ padding: '10px' }">
+                <img :src="card.src" width="300px" height="150px"> 
+                <div style="padding: 14px;">
+                  <span>{{ card.cardName }}</span>
+
+                </div>
+              </el-card>
+            </el-col>
+          </template>
+
+        </template>
+      </el-main>
     </el-container>
   </el-container>
 </el-container>
