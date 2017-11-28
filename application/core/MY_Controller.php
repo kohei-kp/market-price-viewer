@@ -15,7 +15,7 @@ class MY_Controller extends CI_Controller
      */
     public function init_responce()
     {
-        $this->responce = (object) [
+        $this->response = (object) [
             'result' => FALSE
         ];
     }
@@ -28,9 +28,7 @@ class MY_Controller extends CI_Controller
     {
         $CI =& get_instance();
         $CI->output->set_content_type('application/json');
-        $CI->output->set_output(json_encode($this->responce));
-        $CI->output->display();
-        exit;
+        $CI->output->set_output(json_encode($this->response));
     }
 
 }

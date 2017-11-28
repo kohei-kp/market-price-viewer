@@ -15,8 +15,8 @@ class Group extends MY_Controller
      */
     public function search()
     {
-        $this->responce->result = TRUE;
-        $this->responce->group_list = $this->db_group->search([]);
+        $this->response->result = TRUE;
+        $this->response->group_list = $this->db_group->search([]);
         $this->output_json();
     }
 
@@ -26,7 +26,7 @@ class Group extends MY_Controller
      */
     public function create()
     {
-        $this->responce = TRUE;
+        $this->response = TRUE;
         $this->output_json();
     }
 
@@ -36,7 +36,7 @@ class Group extends MY_Controller
      */
     public function edit()
     {
-        $this->responce->result = TRUE;
+        $this->response->result = TRUE;
         $this->output_json();
     }
 
@@ -46,7 +46,7 @@ class Group extends MY_Controller
      */
     public function delete()
     {
-        $this->responce->result = TRUE;
+        $this->response->result = TRUE;
         $this->output_json();
     }
 
