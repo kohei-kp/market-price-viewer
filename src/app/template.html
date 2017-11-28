@@ -12,9 +12,9 @@
           @open="handleOpen"
           @close="handleClose"
         >
-          <el-menu-item-group title="Expansion">
-            <el-menu-item v-for="(expansion, key) in expansions" :key="expansion.name" :index="key">
-              {{ expansion.name }}
+          <el-menu-item-group title="Group">
+            <el-menu-item v-for="(group, key) in group_list" :key="group.group_name" :index="String(key)">
+              {{ group.group_name }}
             </el-menu-item>
           </el-menu-item-group>
         </el-menu>

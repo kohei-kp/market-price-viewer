@@ -1,5 +1,35 @@
+import Vue from 'vue';
+
 export default {
   name: 'App',
+
+  created() {
+    console.log('created');
+    this.fetchGroupData();
+  },
+
+  methods: {
+    fetchGroupData() {
+      const url = `http://market-price-viewer.local/index.php/api/v1/group/search`;
+
+      fetch(url)
+      .then(r => r.json())
+      .then(data => {
+        if (data.result === false) return;
+
+        Vue.set(this, 'group_list', data.group_list);
+      });
+    },
+
+     handleOpen(key, keyPath) {
+      console.log(key, keyPath);
+    },
+    handleClose(key, keyPath) {
+      console.log(key, keyPath);
+    }
+
+  },
+
   data: () => {
     return {
       currentDate: new Date(),
@@ -21,55 +51,7 @@ export default {
           src: '/assets/screenshot/5.jpg'
         }
       ],
-      expansions: [
-        {
-          name: 'イクサラン',
-        },
-        {
-          name: '破滅の刻',
-        },
-        {
-          name: 'アモンケット',
-        },
-        {
-          name: '霊気紛争',
-        },
-        {
-          name: 'カラデシュ',
-        },
-        {
-          name: '異界月',
-        },
-        {
-          name: 'イニストラードを覆う影',
-        },
-        {
-          name: 'ゲートウォッチの誓い',
-        },
-        {
-          name: '戦乱のゼンディカー',
-        },
-        {
-          name: 'タルキール龍紀伝',
-        },
-        {
-          name: '運命再編',
-        },
-        {
-          name: 'タルキール覇王譚',
-        },
-        {
-          name: 'ニクスへの旅',
-        }
-      ],
+      group_list: []
     }
   },
-  methods: {
-    handleOpen(key, keyPath) {
-      console.log(key, keyPath);
-    },
-    handleClose(key, keyPath) {
-      console.log(key, keyPath);
-    }
-  }
 };
