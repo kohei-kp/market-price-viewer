@@ -15,8 +15,18 @@ class Card extends MY_Controller
      */
     public function search()
     {
-        $this->responce->result = TRUE;
-        $this->responce->card_list = $this->db_card->search(['group_id' => 1]);
+        $options = [];
+        if (array_key_exists('group_id', $_POST))
+        {
+            $options['group_id'] = element('group_id', $_POST);
+        }
+        if (array_key_exists('card_id', $_POST))
+        {
+            $options['card_id'] = element('card_id', $_POST);
+        }
+
+        $this->response->result = TRUE;
+        $this->response->card_list = $this->db_card->search($options);
         $this->output_json();
     }
 
@@ -26,7 +36,7 @@ class Card extends MY_Controller
      */
     public function create()
     {
-        $this->responce->result = TRUE;
+        $this->response->result = TRUE;
         $this->output_json();
     }
 
@@ -36,7 +46,7 @@ class Card extends MY_Controller
      */
     public function edit()
     {
-        $this->responce->result = TRUE;
+        $this->response->result = TRUE;
         $this->output_json();
     }
 
@@ -46,7 +56,7 @@ class Card extends MY_Controller
      */
     public function delete()
     {
-        $this->responce->result = TRUE;
+        $this->response->result = TRUE;
         $this->output_json();
     }
 

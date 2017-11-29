@@ -22,7 +22,7 @@ class Db_card extends CI_Model
         {
             $this->db->where('card_id', $options['card_id']);
         }
-        if (array_key_exists('', $options))
+        if (array_key_exists('group_id', $options))
         {
             $this->db->where('group_id', $options['group_id']);
         }
