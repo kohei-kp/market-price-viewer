@@ -1,10 +1,15 @@
 import Vue from 'vue';
+import bus from '../bus';
+import GraphList from '../GraphList/index.vue';
 
 export default {
   name: 'App',
+  
+  components: {
+    'graph-list': GraphList
+  },
 
   created() {
-    console.log('created');
     this.fetchGroupData();
   },
 
@@ -21,36 +26,14 @@ export default {
       });
     },
 
-     handleOpen(key, keyPath) {
-      console.log(key, keyPath);
-    },
-    handleClose(key, keyPath) {
-      console.log(key, keyPath);
+    handleClickGroup(e) {
+      const group_id = e.$vnode.data.attrs.group_id;
+      bus.$emit('draw-cardlist', group_id);
     }
-
   },
 
   data: () => {
     return {
-      currentDate: new Date(),
-      cards: [
-        {
-          cardName: 'Card Name1',
-          src: '/assets/screenshot/2.jpg'
-        },
-        {
-          cardName: 'Card Name2',
-          src: '/assets/screenshot/3.jpg'
-        },
-        {
-          cardName: 'Card Name3',
-          src: '/assets/screenshot/4.jpg'
-        },
-        {
-          cardName: 'Card Name4',
-          src: '/assets/screenshot/5.jpg'
-        }
-      ],
       group_list: []
     }
   },

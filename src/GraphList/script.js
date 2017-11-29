@@ -1,35 +1,45 @@
 import Vue from 'vue';
+import bus from '../bus';
 
 export default {
+  
   name: 'GraphList',
-  components: {
-    //'graph-data': GraphData,
+
+  created() {
+    bus.$on('draw-cardlist', this.drawCardList);
+    this.fetchCardData();
   },
+
   methods: {
-    handleChangeGroupList(groupName) {
-      console.log(groupName);
+    drawCardList(group_id) {
+      this.fetchCardData({ group_id: group_id })
+    },
+
+    fetchCardData(options = {}) {
+      const url = `http://market-price-viewer.local/index.php/api/v1/card/search`;
+
+      const formData = new FormData();
+      Object.keys(options).forEach(key => {
+        formData.append(key, options[key]);
+      });
+
+      fetch(url, {
+        method: 'POST',
+        body: formData
+      })
+      .then(r => r.json())
+      .then(data => {
+        if (data.result === false) return;
+
+        Vue.set(this, 'card_list', data.card_list);
+      });
     }
   },
+
   data() {
     return {
-      cards: [
-        {
-          cardName: 'Card Name1',
-          src: '../assets/screenshot/2.jpg'
-        },
-        {
-          cardName: 'Card Name2',
-          src: '../assets/screenshot/3.jpg'
-        },
-        {
-          cardName: 'Card Name3',
-          src: '../assets/screenshot/4.jpg'
-        },
-        {
-          cardName: 'Card Name4',
-          src: '../assets/screenshot/5.jpg'
-        }
-      ]
+      card_list: []
     }
   }
+
 };
