@@ -15,7 +15,7 @@ export default {
 
   methods: {
     fetchGroupData() {
-      const url = `http://market-price-viewer.local/index.php/api/v1/group/search`;
+      const url = `${location.protocol}//${location.host}/index.php/api/v1/group/search`;
 
       fetch(url)
       .then(r => r.json())

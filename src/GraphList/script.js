@@ -16,7 +16,7 @@ export default {
     },
 
     fetchCardData(options = {}) {
-      const url = `http://market-price-viewer.local/index.php/api/v1/card/search`;
+      const url = `${location.protocol}//${location.host}/index.php/api/v1/card/search`;
 
       const formData = new FormData();
       Object.keys(options).forEach(key => {
