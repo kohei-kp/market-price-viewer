@@ -1,0 +1,76 @@
+<div>
+  <el-button-group style="padding: 5px 10px">
+    <el-tooltip effect="dark" content="Add a group." placement="top">
+      <el-button type="info" style="height: 45px" @click="dialogAddGroupVisible = true">
+        <icon name="book" scale="1"></icon>
+      </el-button>
+    </el-tooltip>
+    <el-tooltip  effect="dark" content="Add a card." placement="top">
+      <el-button type="info" style="height: 45px" @click="dialogAddCardVisible = true">
+        <icon name="id-card" scale="1"></icon>
+      </el-button>
+    </el-tooltip>
+    <el-tooltip effect="dark" content="Add a site." placement="top">
+      <el-button type="info" style="height: 45px" @click="dialogAddSiteVisible = true">
+        <icon name="television" scale="1"></icon>
+      </el-button>
+    </el-tooltip>
+    <el-tooltip  effect="dark" content="Magement page." placement="top">
+      <el-button type="info" style="height: 45px" @click="handleClickManagementButton">
+        <icon name="gears" scale="1"></icon>
+      </el-button>
+    </el-tooltip>
+  </el-button-group>
+
+  <!-- Add Group Dialog -->
+  <el-dialog title="Add Group" :visible.sync="dialogAddGroupVisible">
+    <el-form :model="formGroup">
+      <el-form-item label="Group name">
+        <el-input v-model="formGroup.groupname"></el-input>
+      </el-form-item>
+    </el-form>
+    <span slot="footer" class="dialog-footer">
+      <el-button @click="dialogAddGroupVisible = false">Close</el-button>
+      <el-button type="primary" @click="dialogAddGroupVisible = false">Add</el-button>
+    </span>
+  </el-dialog>
+
+  <!-- Add Card Dialog -->
+  <el-dialog title="Add Card" :visible.sync="dialogAddCardVisible">
+    <el-form :model="formCard">
+      <el-form-item label="Card name">
+        <el-input v-model="formCard.cardname"></el-input>
+      </el-form-item>
+      <el-form-item label="URL">
+        <el-input v-model="formCard.url"></el-input>
+      </el-form-item>
+      <el-form-item label="Site">
+        <el-select v-model="formCard.siteId" placeholder="Please select a site">
+          <el-option label="Wisdom Guild" value="1"></el-option>
+        </el-select>
+      </el-form-item>
+    </el-form>
+
+    <span slot="footer" class="dialog-footer">
+      <el-button @click="dialogAddCardVisible = false">Close</el-button>
+      <el-button type="primary" @click="dialogAddCardVisible = false">Add</el-button>
+    </span>
+  </el-dialog>
+
+  <!-- Add Site Dialog -->
+  <el-dialog title="Add Site" :visible.sync="dialogAddSiteVisible">
+    <el-form :model="formSite">
+      <el-form-item label="Site name">
+        <el-input v-model="formSite.sitename"></el-input>
+      </el-form-item>
+      <el-form-item label="Site code">
+        <el-input v-model="formSite.sitecode"></el-input>
+      </el-form-item>
+    </el-form>
+    
+    <span slot="footer" class="dialog-footer">
+      <el-button @click="dialogAddSiteVisible = false">Close</el-button>
+      <el-button type="primary" @click="dialogAddSiteVisible = false">Add</el-button>
+    </span>
+  </el-dialog>
+</div>
