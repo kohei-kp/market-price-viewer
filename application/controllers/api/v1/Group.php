@@ -26,7 +26,13 @@ class Group extends MY_Controller
      */
     public function create()
     {
-        $this->response = TRUE;
+        $this->response->result = TRUE;
+
+        $data = [
+            'group_name' => element('groupname', $_POST)
+        ];
+
+        $this->response->group_id = $this->db_group->insert($data);
         $this->output_json();
     }
 
