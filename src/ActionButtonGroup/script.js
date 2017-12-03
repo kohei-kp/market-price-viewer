@@ -1,3 +1,4 @@
+import Vue from 'vue';
 import bus from '../bus';
 
 export default {
@@ -6,6 +7,9 @@ export default {
 
   created() {
     bus.$on('add-group', this.addGroup);
+    bus.$on('add-card', this.addCard);
+    this.fetchGroupData();
+    this.fetchSiteData();
   },
 
   methods: {
@@ -37,10 +41,53 @@ export default {
         bus.$emit('draw-group');
         bus.$emit('draw-cardlist');
       });
+    },
 
+    handleClickAddCardButton(e) {
+      bus.$emit('add-card', this.formCard);
+    },
+
+    addCard(formCard = {}) {
+      const url = `${location.protocol}//${location.host}/index.php/api/v1/card/create`;
+
+      const formData = new FormData();
+      Object.keys(formCard).forEach(key => {
+        formData.append(key, formCard[key]);
+      });
+
+      fetch(url, {
+        method: 'POST',
+        body: formData
+      })
+      .then(r => r.json())
+      .then(data => {
+        if (data.result === false) return;
+        this.dialogAddCardVisible = false;
+        bus.$emit('draw-cardlist');
+      });
+    },
+
+    fetchGroupData() {
+      const url = `${location.protocol}//${location.host}/index.php/api/v1/group/search`;
+
+      fetch(url)
+      .then(r => r.json())
+      .then(data => {
+        if (data.result === false) return;
+        Vue.set(this, 'groupList', data.group_list);
+      });
+    },
+
+    fetchSiteData() {
+      const url = `${location.protocol}//${location.host}/index.php/api/v1/site/search`;
+
+      fetch(url)
+      .then(r => r.json())
+      .then(data => {
+        if (data.result === false) return;
+        Vue.set(this, 'siteList', data.site_list);
+      });
     }
-
-
   },
 
   data() {
@@ -49,11 +96,15 @@ export default {
       dialogAddCardVisible:  false,
       dialogAddSiteVisible:  false,
 
+      groupList: [],
+      siteList: [],
+
       formGroup: {
         groupname: ''
       },
 
       formCard: {
+        groupId:  '',
         cardname: '',
         url:      '',
         siteId:   ''
