@@ -1,0 +1,11 @@
+<el-dialog title="Add Group" :visible.sync="dialogAddGroupVisible">
+  <el-form :model="form">
+    <el-form-item label="Group name">
+      <el-input v-model="form.groupname"></el-input>
+    </el-form-item>
+  </el-form>
+  <span slot="footer" class="dialog-footer">
+    <el-button @click="dialogAddGroupVisible = false">Close</el-button>
+    <el-button  type="primary" @click="handleClickAddGroupButton">Add</el-button>
+  </span>
+</el-dialog>

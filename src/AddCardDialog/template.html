@@ -1,0 +1,35 @@
+<el-dialog title="Add Card" :visible.sync="dialogAddCardVisible">
+  <el-form :model="form">
+    <el-form-item label="Group">
+      <el-select v-model="form.groupId" placeholder="Please select a group.">
+        <el-option v-for="(group, key) in groupList"
+          :key="group.group_id"
+          :label="group.group_name"
+          :value="group.group_id"
+        >
+        </el-option>
+      </el-select>
+    </el-form-item>
+    <el-form-item label="Card name">
+      <el-input v-model="form.cardname"></el-input>
+    </el-form-item>
+    <el-form-item label="URL">
+      <el-input v-model="form.url"></el-input>
+    </el-form-item>
+    <el-form-item label="Site">
+      <el-select v-model="form.siteId" placeholder="Please select a site">
+        <el-option v-for="(site, key) in siteList"
+                   :key="site.site_id"
+                   :label="site.site_name"
+                   :value="site.site_id"
+        >
+        </el-option>
+      </el-select>
+    </el-form-item>
+  </el-form>
+
+  <span slot="footer" class="dialog-footer">
+    <el-button @click="dialogAddCardVisible = false">Close</el-button>
+    <el-button type="primary" @click="handleClickAddCardButton">Add</el-button>
+  </span>
+</el-dialog>
