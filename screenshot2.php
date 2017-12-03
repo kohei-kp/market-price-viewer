@@ -12,7 +12,10 @@ try
     $dsn = 'mysql:dbname=cards;host:localhost';
     $dbh = new PDO($dsn, 'root', 'root');
 
-    $stmt = $dbh->prepare('SELECT * from card');
+    $stmt = $dbh->prepare(
+        'SELECT * from cards JOIN sites ON cards.site_id = sites.site_id'
+    );
+
     $stmt->execute();
 
     while ($result = $stmt->fetch(PDO::FETCH_ASSOC))
