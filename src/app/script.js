@@ -12,6 +12,7 @@ export default {
   },
 
   created() {
+    bus.$on('draw-group', this.fetchGroupData);
     this.fetchGroupData();
   },
 
@@ -29,14 +30,14 @@ export default {
     },
 
     handleClickGroup(e) {
-      const group_id = e.$vnode.data.attrs.group_id;
-      bus.$emit('draw-cardlist', group_id);
+      const groupId = e.$vnode.data.attrs.group_id;
+      bus.$emit('draw-cardlist', groupId);
     }
   },
 
   data: () => {
     return {
-      group_list: []
+      group_list: [],
     }
   },
 };
