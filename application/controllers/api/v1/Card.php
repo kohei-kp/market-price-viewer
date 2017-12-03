@@ -37,6 +37,15 @@ class Card extends MY_Controller
     public function create()
     {
         $this->response->result = TRUE;
+
+        $data = [
+            'group_id'  => element('groupId', $_POST),
+            'card_name' => element('cardname', $_POST),
+            'url'       => urldecode(element('url', $_POST)),
+            'site_id'   => element('siteId', $_POST)
+        ];
+
+        $this->response->card_id = $this->db_card->insert($data);
         $this->output_json();
     }
 
