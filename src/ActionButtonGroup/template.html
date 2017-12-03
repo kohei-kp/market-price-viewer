@@ -10,11 +10,6 @@
         <icon name="id-card" scale="1"></icon>
       </el-button>
     </el-tooltip>
-    <el-tooltip effect="dark" content="Add a site." placement="top">
-      <el-button type="info" style="height: 45px" @click="dialogAddSiteVisible = true">
-        <icon name="television" scale="1"></icon>
-      </el-button>
-    </el-tooltip>
     <el-tooltip  effect="dark" content="Magement page." placement="top">
       <el-button type="info" style="height: 45px" @click="handleClickManagementButton">
         <icon name="gears" scale="1"></icon>
@@ -71,20 +66,4 @@
     </span>
   </el-dialog>
 
-  <!-- Add Site Dialog -->
-  <el-dialog title="Add Site" :visible.sync="dialogAddSiteVisible">
-    <el-form :model="formSite">
-      <el-form-item label="Site name">
-        <el-input v-model="formSite.sitename"></el-input>
-      </el-form-item>
-      <el-form-item label="Site code">
-        <el-input v-model="formSite.sitecode"></el-input>
-      </el-form-item>
-    </el-form>
-    
-    <span slot="footer" class="dialog-footer">
-      <el-button @click="dialogAddSiteVisible = false">Close</el-button>
-      <el-button type="primary" @click="dialogAddSiteVisible = false">Add</el-button>
-    </span>
-  </el-dialog>
 </div>

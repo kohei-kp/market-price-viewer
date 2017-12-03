@@ -110,10 +110,6 @@ export default {
         siteId:   ''
       },
 
-      formSite: {
-        sitename: '',
-        sitecode: ''
-      }
     }
   }
 
