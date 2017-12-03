@@ -8,6 +8,9 @@ export default {
   created() {
     bus.$on('draw-cardlist', this.drawCardList);
     this.fetchCardData();
+
+    const dt = new Date();
+    Vue.set(this, 'currentDate', `${dt.getFullYear()}${dt.getMonth() + 1}${dt.getDate()}${dt.getHours()}${dt.getMinutes()}${dt.getMilliseconds()}`);
   },
 
   methods: {
@@ -42,7 +45,8 @@ export default {
 
   data() {
     return {
-      card_list: []
+      card_list: [],
+      currentDate: ''
     }
   }
 
