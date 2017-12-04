@@ -1,9 +1,14 @@
 import Vue from 'vue';
 import bus from '../bus';
+import DetailCardDialog from '../DetailCardDialog/index.vue';
 
 export default {
-  
+
   name: 'GraphList',
+
+  components: {
+    'detail-card-dialog': DetailCardDialog
+  },
 
   created() {
     bus.$on('draw-cardlist', this.drawCardList);
@@ -14,6 +19,10 @@ export default {
   },
 
   methods: {
+    openDetailDialog(cardId) {
+      bus.$emit(`change-detail-card${cardId}-visible`, true);
+    },
+
     drawCardList(group_id = null) {
       if (group_id) {
         this.fetchCardData({ group_id: group_id });
