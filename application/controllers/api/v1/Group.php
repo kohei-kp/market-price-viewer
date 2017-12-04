@@ -7,6 +7,7 @@ class Group extends MY_Controller
     {
         parent::__construct();
         $this->load->model('db_group');
+        $this->load->helper('util');
     }
 
     /**
@@ -28,8 +29,12 @@ class Group extends MY_Controller
     {
         $this->response->result = TRUE;
 
+        $commit_date = get_datetime();
+
         $data = [
-            'group_name' => element('groupname', $_POST)
+            'group_name'  => element('groupname', $_POST),
+            'insert_date' => $commit_date,
+            'update_date' => $commit_date,
         ];
 
         $this->response->group_id = $this->db_group->insert($data);

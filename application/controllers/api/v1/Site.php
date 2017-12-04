@@ -7,6 +7,7 @@ class Site extends MY_Controller
     {
         parent::__construct();
         $this->load->model('db_site');
+        $this->load->helper('util');
     }
 
     /**
@@ -28,9 +29,13 @@ class Site extends MY_Controller
     {
         $this->response->result = TRUE;
 
+        $commit_date = get_datetime();
+
         $data = [
-            'site_name' => element('sitename', $_POST),
-            'site_code' => element('sitecode', $_POST)
+            'site_name'   => element('sitename', $_POST),
+            'site_code'   => element('sitecode', $_POST),
+            'insert_date' => $commit_date,
+            'update_date' => $commit_date,
         ];
 
         $this->response->site_id = $this->db_site->insert($data);

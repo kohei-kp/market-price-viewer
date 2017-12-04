@@ -7,6 +7,7 @@ class Card extends MY_Controller
     {
         parent::__construct();
         $this->load->model('db_card');
+        $this->load->helper('util');
     }
 
     /**
@@ -38,11 +39,15 @@ class Card extends MY_Controller
     {
         $this->response->result = TRUE;
 
+        $commit_date = get_datetime();
+
         $data = [
-            'group_id'  => element('groupId', $_POST),
-            'card_name' => element('cardname', $_POST),
-            'url'       => urldecode(element('url', $_POST)),
-            'site_id'   => element('siteId', $_POST)
+            'group_id'    => element('groupId', $_POST),
+            'card_name'   => element('cardname', $_POST),
+            'url'         => urldecode(element('url', $_POST)),
+            'site_id'     => element('siteId', $_POST),
+            'insert_date' => $commit_date,
+            'update_date' => $commit_date,
         ];
 
         $this->response->card_id = $this->db_card->insert($data);
