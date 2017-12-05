@@ -5,7 +5,7 @@ require_once(__DIR__ . '/../../vendor/autoload.php');
 
 use JonnyW\PhantomJs\Client;
 
-class Screenshot
+class Lib_screenshot
 {
 
     private $client;
