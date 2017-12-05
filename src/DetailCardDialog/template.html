@@ -1,18 +1,18 @@
-<el-dialog :title="cardName" :visible.sync="dialogDetailCardVisible">
+<el-dialog :title="card.card_name" :visible.sync="dialogDetailCardVisible">
   <div>
-    <img :src="`/assets/screenshot/${cardId}.jpg?${currentDate}`">
+    <img :src="`/assets/screenshot/${card.card_id}.jpg?${currentDate}`">
 
-    <el-button type="info" @click="openOriginalPage(url)">
+    <el-button type="info" @click="openOriginalPage(card.url)">
         <icon name="external-link" label="Original Page" scale="1"></icon>
         Original Page
     </el-button>
-    <el-button type="primary" @click="updateImage(cardId)">
+    <el-button type="primary" @click="updateImage(card.card_id, card.site_id)">
         <icon name="refresh" label="Update Image" scale="1"></icon>
         Update Image
     </el-button>
+    <span>Last Update: {{ card.update_date }}</span>
   </div>
-
   <span slot="footer" class="dialog-footer">
-    <el-button @click="dialogDetailCardVisible = false">Close</el-button>
+    <el-button @click="closeDialog">Close</el-button>
   </span>
 </el-dialog>

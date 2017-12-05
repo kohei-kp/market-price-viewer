@@ -6,23 +6,29 @@ export default {
   name: 'DetailCardDialog',
 
   created() {
-    bus.$on(`change-detail-card${this.cardId}-visible`, this.changeVisible);
+    bus.$on('open-detail-card-dialog', this.openDialog);
   },
   updated() {
-    bus.$on(`change-detail-card${this.cardId}-visible`, this.changeVisible);
+    bus.$on('open-detail-card-dialog', this.openDialog);
   },
   destroyed() {
-    bus.$off(`change-detail-card${this.cardId}-visible`, this.changeVisible);
+    bus.$on('open-detail-card-dialog', this.openDialog);
   },
 
   props: {
-    cardName: String,
-    url: String,
-    cardId: String,
     currentDate: String
   },
 
   methods: {
+
+    openDialog(card) {
+      Vue.set(this, 'card', card);
+      Vue.set(this, 'dialogDetailCardVisible', true);
+    },
+
+    closeDialog() {
+      Vue.set(this, 'dialogDetailCardVisible', false);
+    },
 
     openOriginalPage(url) {
       window.open(url, '_blank');
@@ -32,15 +38,20 @@ export default {
       // 画像更新処理
     },
 
-    changeVisible(bool) {
-      Vue.set(this, 'dialogDetailCardVisible', bool);
-    }
-
   },
 
   data() {
     return {
-      dialogDetailCardVisible: false
+      dialogDetailCardVisible: false,
+      card: {
+        card_id: '',
+        site_id: '',
+        group_id: '',
+        card_name: '',
+        url: '',
+        update_date: '',
+        insert_date: '',
+      }
     };
   }
 

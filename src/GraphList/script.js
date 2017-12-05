@@ -19,8 +19,8 @@ export default {
   },
 
   methods: {
-    openDetailDialog(cardId) {
-      bus.$emit(`change-detail-card${cardId}-visible`, true);
+    openDetailDialog(card) {
+      bus.$emit('open-detail-card-dialog', card);
     },
 
     drawCardList(group_id = null) {
