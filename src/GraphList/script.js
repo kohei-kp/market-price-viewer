@@ -12,10 +12,9 @@ export default {
 
   created() {
     bus.$on('draw-cardlist', this.drawCardList);
+    bus.$on('update-currentdate', this.updateCurrentDate);
+    this.updateCurrentDate();
     this.fetchCardData();
-
-    const dt = new Date();
-    Vue.set(this, 'currentDate', `${dt.getFullYear()}${dt.getMonth() + 1}${dt.getDate()}${dt.getHours()}${dt.getMinutes()}${dt.getMilliseconds()}`);
   },
 
   methods: {
@@ -49,6 +48,11 @@ export default {
 
         Vue.set(this, 'card_list', data.card_list);
       });
+    },
+
+    updateCurrentDate() {
+      const dt = new Date();
+      Vue.set(this, 'currentDate', `${dt.getFullYear()}${dt.getMonth() + 1}${dt.getDate()}${dt.getHours()}${dt.getMinutes()}${dt.getMilliseconds()}`);
     }
   },
 

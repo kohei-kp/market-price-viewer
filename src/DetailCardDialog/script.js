@@ -34,8 +34,26 @@ export default {
       window.open(url, '_blank');
     },
 
-    updateImage(cardId) {
-      // 画像更新処理
+    updateImage(cardId, siteId, pageUrl) {
+      this.fullscreenLoading = true;
+
+      const url = `${location.protocol}//${location.host}/index.php/api/v1/screenshot/update`;
+
+      const formData = new FormData();
+      formData.append('cardId', cardId);
+      formData.append('siteId', siteId);
+      formData.append('url', pageUrl);
+
+      fetch(url, {
+        method: 'POST',
+        body: formData
+      })
+      .then(r => r.json())
+      .then(data => {
+        bus.$emit('update-currentdate');
+        Vue.set(this.card, 'update_date', data.update_date);
+        this.fullscreenLoading = false;
+      });
     },
 
   },
@@ -43,6 +61,7 @@ export default {
   data() {
     return {
       dialogDetailCardVisible: false,
+      fullscreenLoading: false,
       card: {
         card_id: '',
         site_id: '',
