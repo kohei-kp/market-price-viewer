@@ -29,6 +29,7 @@
     "vue": "^2.5.2",
     "vue-awesome": "^2.3.4",
     "vue-loader": "^13.3.0",
+    "vue-router": "^3.0.1",
     "vue-template-compiler": "^2.5.2",
     "vuetify": "^0.16.9",
     "webpack": "^3.8.1"
