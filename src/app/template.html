@@ -1,40 +1,6 @@
 <el-container>
   <el-header style="font-size=12px">
-    <span>Market Price Viewer</span>
+    <router-link to="/">Market Price Viewer</router-link>
   </el-header>
-  <el-container>
-
-    <el-aside width="250px" style="height: 700px">
-      <el-row>
-        <action-button-group></action-button-group>
-      </el-row>
-
-      <div style="height: 600px; overflow-y: scroll;">
-        <el-row class="side-menu-wrapper">
-          <el-menu
-            default-active="0"
-            class="el-menu-vertical-demo"
-          >
-            <el-menu-item-group title="Group">
-              <el-menu-item
-                v-for="(group, key) in group_list" 
-                :key="group.group_name"
-                :group_id="String(group.group_id)"
-                :index="String(group.group_id)"
-                @click="handleClickGroup"
-              >
-                {{ group.group_name }}
-              </el-menu-item>
-            </el-menu-item-group>
-          </el-menu>
-        </el-row>
-      </div>
-    </el-aside>
-
-    <el-container>
-      <el-main>
-        <graph-list></graph-list>
-      </el-main>
-    </el-container>
-  </el-container>
+  <router-view></router-view>
 </el-container>

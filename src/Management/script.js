@@ -1,7 +1,10 @@
 export default {
-  name: 'App',
+
+  name: 'Management',
+
   data: () => {
     return {
-    }
+    };
   }
+
 };

@@ -23,7 +23,7 @@ export default {
     },
 
     openManagementPage(e) {
-      location.href = '/index.php/top';
+      this.$router.push('management');
     },
 
   },
