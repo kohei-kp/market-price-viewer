@@ -4,6 +4,7 @@ export default {
 
   data: () => {
     return {
+      activeName: 'first'
     };
   }
 
