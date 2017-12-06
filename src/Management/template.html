@@ -1,7 +1,13 @@
 <div id="management-tab">
   <el-tabs v-model="activeName" type="card">
-    <el-tab-pane label="Group Setting" name="first">Group Setting</el-tab-pane>
-    <el-tab-pane label="Card Setting" name="second">Card Setting</el-tab-pane>
-    <el-tab-pane label="Site Setting" name="third">Site Setting</el-tab-pane>
+    <el-tab-pane label="Group" name="first">
+      <group-management></group-management>
+    </el-tab-pane>
+    <el-tab-pane label="Card" name="second">
+      <card-management></card-management>
+    </el-tab-pane>
+    <el-tab-pane label="Site" name="third">
+      <site-management></site-management>
+    </el-tab-pane>
   </el-tabs>
 </div>

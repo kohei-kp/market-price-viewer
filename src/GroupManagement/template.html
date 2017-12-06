@@ -1,0 +1,19 @@
+<el-table
+    :data="groupList"
+    style="width: 100%"
+    height="250">
+    <el-table-column
+      fixed
+      prop="group_name"
+      label="Group name"
+    >
+    </el-table-column>
+    <el-table-column
+      label="Action"
+      width="120">
+      <template slot-scope="scope">
+        <el-button type="text" size="small">Edit</el-button>
+        <el-button type="text" size="small">Remove</el-button>
+      </template>
+    </el-table-column>
+</el-table>

@@ -1,0 +1,44 @@
+<el-table
+    :data="siteList"
+    style="width: 100%"
+    height="250">
+    <el-table-column
+      fixed
+      prop="site_name"
+      label="Site name"
+    >
+    </el-table-column>
+    <el-table-column
+      prop="site_code"
+      label="Site code"
+    >
+    </el-table-column>
+    <el-table-column
+      prop="width"
+      label="Width"
+    >
+    </el-table-column>
+    <el-table-column
+      prop="height"
+      label="Height"
+    >
+    </el-table-column>
+    <el-table-column
+      prop="top"
+      label="Top"
+    >
+    </el-table-column>
+    <el-table-column
+      prop="left"
+      label="Left"
+    >
+    </el-table-column>
+    <el-table-column
+      label="Action"
+      width="120">
+      <template slot-scope="scope">
+        <el-button type="text" size="small">Edit</el-button>
+        <el-button type="text" size="small">Remove</el-button>
+      </template>
+    </el-table-column>
+</el-table>

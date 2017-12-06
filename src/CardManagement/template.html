@@ -1,0 +1,24 @@
+<el-table
+    :data="cardList"
+    style="width: 100%"
+    height="250">
+    <el-table-column
+      fixed
+      prop="card_name"
+      label="Card name"
+    >
+    </el-table-column>
+    <el-table-column
+      prop="url"
+      label="URL"
+    >
+    </el-table-column>
+    <el-table-column
+      label="Action"
+      width="120">
+      <template slot-scope="scope">
+        <el-button type="text" size="small">Edit</el-button>
+        <el-button type="text" size="small">Remove</el-button>
+      </template>
+    </el-table-column>
+</el-table>
