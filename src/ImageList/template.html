@@ -14,9 +14,8 @@
   <template v-for="(cardList, key) in separateCardList">
     <el-row>
       <template v-for="(card, key) in cardList">
-
         <el-col :span="cardSpanTable[colMax - 1]" :style="{ margin: '5px 5px' }">
-          <screen-shot 
+          <screen-shot
             :card="card"
             :currentDate="currentDate"
           ></screen-shot>

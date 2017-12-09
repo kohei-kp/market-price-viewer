@@ -61,14 +61,16 @@ export default {
       const cards = [];
       const listLength = this.card_list.length;
 
-      // cardがないとき、またはcolMaxが0のときは全部にする
-      if (listLength === 0 || this.colMax === 0) {
+      if (listLength === 0) {
+        return cards;
+      } else if (this.colMax === 0) {
         return cards.push(this.card_list);
       } else {
         for (let i = 0; i < Math.ceil(listLength / this.colMax); i++) {
           const minRange = i * this.colMax;
           cards.push(this.card_list.slice(minRange, minRange + this.colMax));
         }
+
         return cards;
       }
     }
