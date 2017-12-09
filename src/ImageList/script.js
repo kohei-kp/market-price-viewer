@@ -4,7 +4,7 @@ import DetailCardDialog from '../DetailCardDialog/index.vue';
 
 export default {
 
-  name: 'GraphList',
+  name: 'ScreenShotList',
 
   components: {
     'detail-card-dialog': DetailCardDialog

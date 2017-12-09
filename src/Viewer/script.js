@@ -1,14 +1,14 @@
 import Vue from 'vue';
 import bus from '../bus';
 import ActionButtonGroup from '../ActionButtonGroup/index.vue';
-import GraphList from '../GraphList/index.vue';
+import ImageList from '../ImageList/index.vue';
 
 export default {
   name: 'App',
   
   components: {
     'action-button-group': ActionButtonGroup,
-    'graph-list': GraphList
+    'image-list': ImageList
   },
 
   created() {
