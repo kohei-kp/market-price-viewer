@@ -1,12 +1,14 @@
 import Vue from 'vue';
 import bus from '../bus';
 import DetailCardDialog from '../DetailCardDialog/index.vue';
+import ImageComponent from '../Image/index.vue';
 
 export default {
 
-  name: 'ScreenShotList',
+  name: 'ImageList',
 
   components: {
+    'screen-shot' : ImageComponent,
     'detail-card-dialog': DetailCardDialog
   },
 
@@ -18,9 +20,6 @@ export default {
   },
 
   methods: {
-    openDetailDialog(card) {
-      bus.$emit('open-detail-card-dialog', card);
-    },
 
     drawCardList(group_id = null) {
       if (group_id) {
@@ -56,10 +55,55 @@ export default {
     }
   },
 
+  computed: {
+
+    separateCardList() {
+      const cards = [];
+      const listLength = this.card_list.length;
+
+      // cardがないとき、またはcolMaxが0のときは全部にする
+      if (listLength === 0 || this.colMax === 0) {
+        return cards.push(this.card_list);
+      } else {
+        for (let i = 0; i < Math.ceil(listLength / this.colMax); i++) {
+          const minRange = i * this.colMax;
+          cards.push(this.card_list.slice(minRange, minRange + this.colMax));
+        }
+        return cards;
+      }
+    }
+  },
+
   data() {
     return {
       card_list: [],
-      currentDate: ''
+      currentDate: '',
+      colMax: 3,
+
+      options: [{
+        value: 1,
+        label: '1 colmn'
+      }, {
+        value: 2,
+        label: '2 column'
+      }, {
+        value: 3,
+        label: '3 column'
+      }, {
+        value: 4,
+        label: '4 column'
+      }, {
+        value: 5,
+        label: '5 column'
+      }],
+
+      cardSpanTable: [
+        24,
+        11,
+        7,
+        5,
+        4
+      ]
     }
   }
 

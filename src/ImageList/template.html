@@ -1,44 +1,30 @@
 <div>
-  <template v-for="(card, key) in card_list">
-    <template  v-if="key + 1 % 3 === 0">
-      <el-row>
+  <el-row>
+    <el-select v-model="colMax" placeholder="column number">
+      <el-option
+        v-for="item in options"
+        :key="item.value"
+        :label="item.label"
+        :value="item.value"
+      >
+      </el-option>
+    </el-select>
+  </el-row>
 
-        <el-col :span="7" :key="card.card_name" :style="{ margin: '5px 5px' }">
-          <el-card :body-style="{ padding: '10px' }">
-            <img
-              @click="openDetailDialog(card)"
-               v-model="currentDate"
-              :src="`/assets/screenshot/${card.card_id}.jpg?${currentDate}`"
-              width="300px"
-              height="150px"
-            >
-            <div style="padding: 14px;">
-              <span>{{ card.card_name }}</span>
-            </div>
-          </el-card>
+  <template v-for="(cardList, key) in separateCardList">
+    <el-row>
+      <template v-for="(card, key) in cardList">
+
+        <el-col :span="cardSpanTable[colMax - 1]" :style="{ margin: '5px 5px' }">
+          <screen-shot 
+            :card="card"
+            :currentDate="currentDate"
+          ></screen-shot>
         </el-col>
 
-      </el-row>
-    </template>
-
-    <template  v-else>
-      <el-col :span="7" :key="card.card_name" :style="{ margin: '5px 5px' }">
-        <el-card :body-style="{ padding: '10px' }">
-          <img
-              @click="openDetailDialog(card)"
-              :src="`/assets/screenshot/${card.card_id}.jpg?${currentDate}`"
-              width="300px"
-              height="150px"
-          >
-          <div style="padding: 14px;">
-            <span>{{ card.card_name }}</span>
-          </div>
-        </el-card>
-      </el-col>
-    </template>
-
+      </template>
+    </el-row>
   </template>
-
   <detail-card-dialog :currentDate="currentDate"></detail-card-dialog>
 
 </div>
