@@ -82,7 +82,7 @@ export default {
 
       options: [{
         value: 1,
-        label: '1 colmn'
+        label: '1 column'
       }, {
         value: 2,
         label: '2 column'
