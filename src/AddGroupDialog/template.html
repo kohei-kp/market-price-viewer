@@ -1,4 +1,8 @@
-<el-dialog title="Add Group" :visible.sync="dialogAddGroupVisible">
+<el-dialog
+  title="Add Group"
+  :visible.sync="dialogAddGroupVisible"
+  width="40%"
+>
   <el-form :model="form">
     <el-form-item label="Group name">
       <el-input v-model="form.groupname"></el-input>

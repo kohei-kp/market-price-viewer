@@ -1,4 +1,8 @@
-<el-dialog title="Add Card" :visible.sync="dialogAddCardVisible">
+<el-dialog 
+  title="Add Card"
+  :visible.sync="dialogAddCardVisible"
+  width="40%"
+>
   <el-form :model="form">
     <el-form-item label="Group">
       <el-select v-model="form.groupId" placeholder="Please select a group.">

@@ -2,19 +2,25 @@
   :title="card.card_name"
   :visible.sync="dialogDetailCardVisible"
   v-loading.fullscreen.lock="fullscreenLoading"
+  width="40%"
   >
   <div>
-    <img :src="`/assets/screenshot/${card.card_id}.jpg?${currentDate}`">
-
-    <el-button type="info" @click="openOriginalPage(card.url)">
-        <icon name="external-link" label="Original Page" scale="1"></icon>
-        Original Page
-    </el-button>
-    <el-button type="primary" @click="updateImage(card.card_id, card.site_id, card.url)">
-        <icon name="refresh" label="Update Image" scale="1"></icon>
-        Update Image
-    </el-button>
-    <span>Last Update: {{ card.update_date }}</span>
+    <div class="padding10">
+      <span>Last Update {{ card.update_date }}</span>
+    </div>
+    <div class="padding10">
+      <img :src="`/assets/screenshot/${card.card_id}.jpg?${currentDate}`" width="100%">
+    </div>
+    <div class="padding10">
+      <el-button type="info" @click="openOriginalPage(card.url)">
+          <icon name="external-link" label="Original Page" scale="1"></icon>
+          Original Page
+      </el-button>
+      <el-button type="primary" @click="updateImage(card.card_id, card.site_id, card.url)">
+          <icon name="refresh" label="Update Image" scale="1"></icon>
+          Update Image
+      </el-button>
+    </div>
   </div>
   <span slot="footer" class="dialog-footer">
     <el-button @click="closeDialog">Close</el-button>
