@@ -10,13 +10,13 @@ export default {
 
   methods: {
     fetchGroupData() {
-      const url = `${location.protocol}//${location.host}/index.php/api/v1/group/search`
+      const url = `${location.protocol}//${location.host}/index.php/api/v1/group/search`;
 
       fetch(url)
       .then(r => r.json())
       .then(data => {
         if (data.result === false) return;
-
+        console.log(data.group_list);
         Vue.set(this, 'groupList', data.group_list);
       });
     }
