@@ -73,12 +73,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $active_group = 'default';
 $query_builder = TRUE;
 
+$db_host = getenv('DB_HOST');
+$db_name = getenv('DB_NAME');
+$db_pass = getenv('DB_PASSWORD');
+$db_user = getenv('DB_USER');
+
 $db['default'] = array(
-    'dsn'	   => "mysql:host=${DB_HOST};dbname=${DB_NAME}",
-	'hostname' => DB_HOST,
-	'username' => DB_USER,
-	'password' => DB_PASSWORD,
-	'database' => DB_NAME,
+    'dsn'	   => "mysql:host=${db_host};dbname=${db_name}",
+	'hostname' => db_host,
+	'username' => db_user,
+	'password' => db_pass,
+	'database' => db_name,
 	'dbdriver' => 'pdo',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
