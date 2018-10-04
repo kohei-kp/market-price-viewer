@@ -80,10 +80,10 @@ $db_user = getenv('DB_USER');
 
 $db['default'] = array(
     'dsn'	   => "mysql:host=${db_host};dbname=${db_name}",
-	'hostname' => db_host,
-	'username' => db_user,
-	'password' => db_pass,
-	'database' => db_name,
+	'hostname' => $db_host,
+	'username' => $db_user,
+	'password' => $db_pass,
+	'database' => $db_name,
 	'dbdriver' => 'pdo',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
