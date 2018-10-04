@@ -74,11 +74,11 @@ $active_group = 'default';
 $query_builder = TRUE;
 
 $db['default'] = array(
-    'dsn'	   => 'mysql:host=localhost;dbname=cards',
-	'hostname' => 'localhost',
-	'username' => 'root',
-	'password' => 'root',
-	'database' => 'cards',
+    'dsn'	   => "mysql:host=${DB_HOST};dbname=${DB_NAME}",
+	'hostname' => DB_HOST,
+	'username' => DB_USER,
+	'password' => DB_PASSWORD,
+	'database' => DB_NAME,
 	'dbdriver' => 'pdo',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
