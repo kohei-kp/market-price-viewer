@@ -13,7 +13,7 @@ try
     $db_pass = getenv('DB_PASSWORD');
     $db_user = getenv('DB_USER');
 
-    $dsn = "mysql:dbname=${db_name};host:${db_host}";
+    $dsn = "mysql:dbname=${db_name};host=${db_host}";
     $dbh = new PDO($dsn, $db_user, $db_pass);
 
     $sql = 'SELECT * FROM cards JOIN sites ON cards.site_id = sites.site_id';
