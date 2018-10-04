@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "./node_modules/webpack/bin/webpack -p --production",
+    "build": "webpack ",
     "watch": "webpack -w",
     "start": "webpack-dev-server",
     "heroku-prebuild": "npm run build"
@@ -32,6 +32,7 @@
     "eslint-plugin-promise": "^3.6.0",
     "eslint-plugin-standard": "^3.0.1",
     "style-loader": "^0.19.0",
+    "uglifyjs-webpack-plugin": "^2.0.1",
     "url-loader": "^0.6.2",
     "vue": "^2.5.2",
     "vue-awesome": "^2.3.4",
