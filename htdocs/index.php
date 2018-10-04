@@ -1,5 +1,4 @@
 <?php
-echo 'deply test';
 /**
  * CodeIgniter
  *

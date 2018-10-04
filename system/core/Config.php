@@ -182,6 +182,7 @@ class CI_Config {
 			return FALSE;
 		}
 
+        echo 'test test';
 		show_error('The configuration file '.$file.'.php does not exist.');
 	}
 
