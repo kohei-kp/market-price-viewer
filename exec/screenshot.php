@@ -8,8 +8,13 @@ $client = Client::getInstance();
 // DB接続
 try
 {
-    $dsn = 'mysql:dbname=cards;host:localhost';
-    $dbh = new PDO($dsn, 'root', 'root');
+    $db_host = getenv('DB_HOST');
+    $db_name = getenv('DB_NAME');
+    $db_pass = getenv('DB_PASSWORD');
+    $db_user = getenv('DB_USER');
+
+    $dsn = "mysql:dbname=${db_name};host:${db_host}";
+    $dbh = new PDO($dsn, $db_user, $db_pass);
 
     $sql = 'SELECT * FROM cards JOIN sites ON cards.site_id = sites.site_id';
 
