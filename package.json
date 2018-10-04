@@ -6,7 +6,8 @@
   "scripts": {
     "build": "webpack -p --production",
     "watch": "webpack -w",
-    "start": "webpack-dev-server"
+    "start": "webpack-dev-server",
+    "heroku-prebuild": "npm run build"
   },
   "repository": {
     "type": "git",
