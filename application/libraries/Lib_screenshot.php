@@ -4,7 +4,7 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
 require_once(__DIR__ . '/../../vendor/autoload.php');
 
 use JonnyW\PhantomJs\Client as PhantomJS;
-use Aws\S3\S3\Client as AWS_S3;
+use Aws\S3\Client as AWS_S3;
 
 class Lib_screenshot
 {
