@@ -55,7 +55,8 @@ class Lib_screenshot
         $this->s3Client->putObject([
             'Bucket' => getenv('AWS_S3_STORAGE'),
             'Key' => $filename . '.jpg',
-            'SourceFile' => "{$_SERVER['DOCUMENT_ROOT']}/assets/screenshot/{$filename}.jpg"
+            'SourceFile' => "{$_SERVER['DOCUMENT_ROOT']}/assets/screenshot/{$filename}.jpg",
+            'ContentType' => 'image/jpeg'
         ]);
     }
 
