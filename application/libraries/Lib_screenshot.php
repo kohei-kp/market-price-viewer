@@ -3,17 +3,28 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
 
 require_once(__DIR__ . '/../../vendor/autoload.php');
 
-use JonnyW\PhantomJs\Client;
+use JonnyW\PhantomJs\Client as PhantomJS;
+use Aws\S3\S3\Client as AWS_S3;
 
 class Lib_screenshot
 {
 
-    private $client;
+    private $phantomJsClient;
+    private $s3Client;
 
     public function __construct()
     {
-        $this->client = Client::getInstance();
-        $this->client->getEngine()->setPath($_SERVER['DOCUMENT_ROOT'] . '/../vendor/jakoch/phantomjs/bin/phantomjs');
+        $this->phantomJsClient = PhantomJS::getInstance();
+        $this->phantomJsClient->getEngine()->setPath($_SERVER['DOCUMENT_ROOT'] . '/../vendor/jakoch/phantomjs/bin/phantomjs');
+
+        $this->s3Client = AWS_S3::factory([
+            'credentials' => [
+                'key' => getenv('AWS_S3_ACCESS_KEY'),
+                'secret' => getenv('AWS_S3_SECRET_KEY')
+            ],
+            'region' => 'ap-northeast-1',
+            'version' => 'latest'
+        ]);
     }
 
     /**
@@ -28,17 +39,27 @@ class Lib_screenshot
      */
     public function takeScreenshot($url, $width, $height, $top, $left, $filename)
     {
-        $request = $this->client->getMessageFactory()->createCaptureRequest($url);
+        $request = $this->phantomJsClient->getMessageFactory()->createCaptureRequest($url);
 
         $request->setCaptureDimensions($width, $height, $top, $left);
 
-        $response = $this->client->getMessageFactory()->createResponse();
+        $response = $this->phantomJsClient->getMessageFactory()->createResponse();
 
         // 保存先
         $file = "{$_SERVER['DOCUMENT_ROOT']}/assets/screenshot/{$filename}.jpg";
         $request->setOutputFile($file);
 
-        $this->client->send($request, $response);
+        $this->phantomJsClient->send($request, $response);
+
+        $image = fopen("{$_SERVER['DOCUMENT_ROOT']}/assets/screenshot/{$filename}.jpg", 'rb');
+
+        // S3に保存
+        $this->s3Client->putObject([
+            'Bucket' => getenv('AWS_S3_STORAGE'),
+            'Key' => $filename . '.jpg',
+            'Body' => $image,
+            'ContentType' => 'image/jpeg'
+        ]);
     }
 
     /**
