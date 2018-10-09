@@ -51,14 +51,11 @@ class Lib_screenshot
 
         $this->phantomJsClient->send($request, $response);
 
-        $image = fopen("{$_SERVER['DOCUMENT_ROOT']}/assets/screenshot/{$filename}.jpg", 'rb');
-
         // S3に保存
         $this->s3Client->putObject([
             'Bucket' => getenv('AWS_S3_STORAGE'),
             'Key' => $filename . '.jpg',
-            'Body' => $image,
-            'ContentType' => 'image/jpeg'
+            'SourceFile' => "{$_SERVER['DOCUMENT_ROOT']}/assets/screenshot/{$filename}.jpg"
         ]);
     }
 
