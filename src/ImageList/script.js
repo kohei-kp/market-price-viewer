@@ -54,7 +54,7 @@ export default {
       Vue.set(this, 'currentDate', `${dt.getFullYear()}${dt.getMonth() + 1}${dt.getDate()}${dt.getHours()}${dt.getMinutes()}${dt.getMilliseconds()}`);
     },
 
-    selectedCardData(card) {
+    setSelectedCardData(card) {
       Vue.set(this, 'selectedCardData', card)
     },
   },

@@ -70100,7 +70100,7 @@ exports.push([module.i, "", "", {"version":3,"sources":[],"names":[],"mappings":
       __WEBPACK_IMPORTED_MODULE_0_vue___default.a.set(this, 'currentDate', `${dt.getFullYear()}${dt.getMonth() + 1}${dt.getDate()}${dt.getHours()}${dt.getMinutes()}${dt.getMilliseconds()}`);
     },
 
-    selectedCardData(card) {
+    setSelectedCardData(card) {
       __WEBPACK_IMPORTED_MODULE_0_vue___default.a.set(this, 'selectedCardData', card);
     }
   },
