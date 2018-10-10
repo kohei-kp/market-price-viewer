@@ -1,23 +1,22 @@
-const path = require('path');
-const webpack = require('webpack');
+const path = require('path')
+const webpack = require('webpack')
 
 module.exports = {
-
   entry: './src/main.js',
   output: {
     path: `${__dirname}/htdocs/assets/js`,
-    filename: 'bundle.js',
+    filename: 'bundle.js'
   },
   module: {
     rules: [
       {
         test: /\.vue$/,
-        use: 'vue-loader',
+        use: 'vue-loader'
       },
       {
         test: /\.js$/,
         use: 'babel-loader',
-        exclude: /(\/node_modules\/|test\.js|\.spec\.js$)/,
+        exclude: /(\/node_modules\/|test\.js|\.spec\.js$)/
       },
       {
         test: /\.css$/,
@@ -43,4 +42,4 @@ module.exports = {
     }
   },
   devtool: 'source-map'
-};
+}
