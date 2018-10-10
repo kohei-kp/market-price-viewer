@@ -3,29 +3,29 @@ import AddGroupDialog from '../AddGroupDialog/index.vue'
 import AddCardDialog from '../AddCardDialog/index.vue'
 
 export default {
-    name: 'ActionButtonGroup',
+  name: 'ActionButtonGroup',
 
-    components: {
-        'add-group-dialog': AddGroupDialog,
-        'add-card-dialog': AddCardDialog
+  components: {
+    'add-group-dialog': AddGroupDialog,
+    'add-card-dialog': AddCardDialog
+  },
+
+  methods: {
+    openAddGroupDialog (e) {
+      bus.$emit('change-add-group-visible', true)
     },
 
-    methods: {
-        openAddGroupDialog (e) {
-            bus.$emit('change-add-group-visible', true)
-        },
-
-        openAddCardDialog (e) {
-            bus.$emit('change-add-card-visible', true)
-        },
-
-        openManagementPage (e) {
-            this.$router.push('management')
-        }
+    openAddCardDialog (e) {
+      bus.$emit('change-add-card-visible', true)
     },
 
-    data () {
-        return {
-        }
+    openManagementPage (e) {
+      this.$router.push('management')
     }
+  },
+
+  data () {
+    return {
+    }
+  }
 }

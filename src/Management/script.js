@@ -4,18 +4,18 @@ import SiteManagementComponent from '../SiteManagement/index.vue'
 
 export default {
 
-    name: 'Management',
+  name: 'Management',
 
-    components: {
-        'group-management': GroupManagementComponent,
-        'card-management': CardManagementComponent,
-        'site-management': SiteManagementComponent
-    },
+  components: {
+    'group-management': GroupManagementComponent,
+    'card-management': CardManagementComponent,
+    'site-management': SiteManagementComponent
+  },
 
-    data: () => {
-        return {
-            activeName: 'first'
-        }
+  data: () => {
+    return {
+      activeName: 'first'
     }
+  }
 
 }

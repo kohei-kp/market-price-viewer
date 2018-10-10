@@ -1,21 +1,21 @@
 import bus from '../bus'
 
 export default {
-    name: 'ScreenShot',
+  name: 'ScreenShot',
 
-    props: {
-        card: Object,
-        currentDate: String
+  props: {
+    card: Object,
+    currentDate: String
+  },
+
+  methods: {
+    handleClickImage () {
+      this.$emit('selected-card-id', this.card.card_id)
+      this.openDetailDialog()
     },
 
-    methods: {
-        handleClickImage () {
-            this.$emit('selected-card-id', this.card.card_id)
-            this.openDetailDialog()
-        },
-
-        openDetailDialog () {
-            bus.$emit('open-detail-card-dialog')
-        }
+    openDetailDialog () {
+      bus.$emit('open-detail-card-dialog')
     }
+  }
 }

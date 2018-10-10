@@ -14,25 +14,25 @@ Vue.use(ElementUI)
 Vue.component('icon', Icon)
 
 const router = new VueRouter({
-    history: true,
-    saveScrollPosition: true,
-    routes: [
-        {
-            path: '/',
-            component: ViewerComponent
-        },
-        {
-            path: '/management',
-            component: ManagementComponent
-        }
-    ]
+  history: true,
+  saveScrollPosition: true,
+  routes: [
+    {
+      path: '/',
+      component: ViewerComponent
+    },
+    {
+      path: '/management',
+      component: ManagementComponent
+    }
+  ]
 })
 
 const vm = new Vue({
-    el: '#app',
-    components: {
-        app: AppComponent
-    },
-    router,
-    render: h => h('app')
+  el: '#app',
+  components: {
+    app: AppComponent
+  },
+  router,
+  render: h => h('app')
 })
