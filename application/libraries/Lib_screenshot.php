@@ -57,7 +57,8 @@ class Lib_screenshot
             $result = $this->s3Client->putObject([
                 'Bucket' => getenv('AWS_S3_STORAGE'),
                 'Key' => 'myscreenshotviewer/' . $filename . '.jpg',
-                'Body' => fopen("{$_SERVER['DOCUMENT_ROOT']}/assets/screenshot/{$filename}.jpg", 'r')
+                'Body' => fopen("{$_SERVER['DOCUMENT_ROOT']}/assets/screenshot/{$filename}.jpg", 'r'),
+                'ACL' => 'public-read'
             ]);
 
             unlink("{$_SERVER['DOCUMENT_ROOT']}/assets/screenshot/${filename}.jpg");
