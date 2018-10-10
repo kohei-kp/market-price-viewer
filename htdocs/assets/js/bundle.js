@@ -70365,16 +70365,7 @@ var render = function() {
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "padding10" }, [
-          _c("img", {
-            attrs: {
-              src:
-                "/assets/screenshot/" +
-                _vm.card.card_id +
-                ".jpg?" +
-                _vm.currentDate,
-              width: "100%"
-            }
-          })
+          _c("img", { attrs: { src: "" + _vm.card.img_url, width: "100%" } })
         ]),
         _vm._v(" "),
         _c(
@@ -70569,7 +70560,6 @@ exports.push([module.i, "\nimg[data-v-422a6aa6] {\n  cursor: pointer;\n}\n", "",
   },
 
   methods: {
-
     openDetailDialog(card) {
       __WEBPACK_IMPORTED_MODULE_0__bus__["a" /* default */].$emit('open-detail-card-dialog', card);
     }
@@ -70589,12 +70579,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("el-card", { attrs: { "body-style": { padding: "10px" } } }, [
     _c("img", {
-      attrs: {
-        src:
-          "/assets/screenshot/" + _vm.card.card_id + ".jpg?" + _vm.currentDate,
-        width: "100%",
-        height: "70%"
-      },
+      attrs: { src: "" + _vm.card.img_url, width: "100%", height: "70%" },
       on: {
         click: function($event) {
           _vm.openDetailDialog(_vm.card)
