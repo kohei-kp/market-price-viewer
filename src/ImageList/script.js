@@ -52,7 +52,11 @@ export default {
     updateCurrentDate() {
       const dt = new Date();
       Vue.set(this, 'currentDate', `${dt.getFullYear()}${dt.getMonth() + 1}${dt.getDate()}${dt.getHours()}${dt.getMinutes()}${dt.getMilliseconds()}`);
-    }
+    },
+
+    selectedCardData(card) {
+      Vue.set(this, 'selectedCardData', card)
+    },
   },
 
   computed: {
@@ -79,8 +83,19 @@ export default {
   data() {
     return {
       card_list: [],
-      currentDate: '',
+      currentDate: ''
       colMax: 3,
+
+      selectedCard: {
+        card_id: '',
+        site_id: '',
+        group_id: '',
+        card_name: '',
+        url: '',
+        update_date: '',
+        insert_date: '',
+        img_url: ''
+      },
 
       options: [{
         value: 1,

@@ -18,12 +18,16 @@
           <screen-shot
             :card="card"
             :currentDate="currentDate"
+            @selected-card-data="setSelectedCardData"
           ></screen-shot>
         </el-col>
 
       </template>
     </el-row>
   </template>
-  <detail-card-dialog :currentDate="currentDate"></detail-card-dialog>
+  <detail-card-dialog
+    :currentDate="currentDate"
+    :selectedCardData="selectedCardData"
+   ></detail-card-dialog>
 
 </div>

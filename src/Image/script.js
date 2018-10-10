@@ -10,10 +10,14 @@ export default {
   },
 
   methods: {
-    openDetailDialog(card) {
-      bus.$emit('open-detail-card-dialog', card);
-    }
+    handleClickImage () {
+      this.$emit('selected-card-data', card);
+      this.openDetailDialog()
+    },
 
+    openDetailDialog() {
+      bus.$emit('open-detail-card-dialog');
+    }
   }
 
 };

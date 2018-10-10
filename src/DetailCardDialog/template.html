@@ -1,22 +1,22 @@
 <el-dialog 
-  :title="card.card_name"
+  :title="selectedCardData.card_name"
   :visible.sync="dialogDetailCardVisible"
   v-loading.fullscreen.lock="fullscreenLoading"
   width="40%"
   >
   <div>
     <div class="padding10">
-      <span>Last Update {{ card.update_date }}</span>
+      <span>Last Update {{ selectedCardData.update_date }}</span>
     </div>
     <div class="padding10">
-      <img :src="`${card.img_url}`" width="100%">
+      <img :src="`${selectedCardData.img_url}`" width="100%">
     </div>
     <div class="padding10">
-      <el-button type="info" @click="openOriginalPage(card.url)">
+      <el-button type="info" @click="openOriginalPage(selectedCardData.url)">
           <icon name="external-link" label="Original Page" scale="1"></icon>
           Original Page
       </el-button>
-      <el-button type="primary" @click="updateImage(card.card_id, card.site_id, card.url)">
+      <el-button type="primary" @click="updateImage(selectedCardData.card_id, selectedCardData.site_id, selectedCardData.url)">
           <icon name="refresh" label="Update Image" scale="1"></icon>
           Update Image
       </el-button>

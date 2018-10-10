@@ -16,13 +16,27 @@ export default {
   },
 
   props: {
-    currentDate: String
+    currentDate: String,
+    selectedCardData: {
+      types: Object,
+      default () {
+        return {
+          card_id: '',
+          site_id: '',
+          group_id: '',
+          card_name: '',
+          url: '',
+          update_date: '',
+          insert_date: '',
+          img_url: ''
+        }
+      }
+    }
   },
 
   methods: {
 
-    openDialog(card) {
-      Vue.set(this, 'card', card);
+    openDialog() {
       Vue.set(this, 'dialogDetailCardVisible', true);
     },
 
@@ -52,7 +66,6 @@ export default {
       .then(data => {
         bus.$emit('update-currentdate');
         bus.$emit('draw-cardlist');
-        Vue.set(this.card, 'update_date', data.update_date);
         this.fullscreenLoading = false;
       });
     },
@@ -63,15 +76,6 @@ export default {
     return {
       dialogDetailCardVisible: false,
       fullscreenLoading: false,
-      card: {
-        card_id: '',
-        site_id: '',
-        group_id: '',
-        card_name: '',
-        url: '',
-        update_date: '',
-        insert_date: '',
-      }
     };
   }
 
