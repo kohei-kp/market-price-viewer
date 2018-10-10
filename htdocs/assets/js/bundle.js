@@ -70100,8 +70100,8 @@ exports.push([module.i, "", "", {"version":3,"sources":[],"names":[],"mappings":
       __WEBPACK_IMPORTED_MODULE_0_vue___default.a.set(this, 'currentDate', `${dt.getFullYear()}${dt.getMonth() + 1}${dt.getDate()}${dt.getHours()}${dt.getMinutes()}${dt.getMilliseconds()}`);
     },
 
-    setSelectedCardData(card) {
-      __WEBPACK_IMPORTED_MODULE_0_vue___default.a.set(this, 'selectedCardData', card);
+    setSelectedCardId(cardId) {
+      this.selectedCardId = cardId;
     }
   },
 
@@ -70123,6 +70123,23 @@ exports.push([module.i, "", "", {"version":3,"sources":[],"names":[],"mappings":
 
         return cards;
       }
+    },
+
+    selectedCardData() {
+      const cardData = this.card_list.find(card => {
+        this.selectedCardId === card.card_id;
+      });
+
+      return cardData !== undefined ? cardData : {
+        card_id: '',
+        site_id: '',
+        group_id: '',
+        card_name: '',
+        url: '',
+        update_date: '',
+        insert_date: '',
+        img_url: ''
+      };
     }
   },
 
@@ -70132,16 +70149,7 @@ exports.push([module.i, "", "", {"version":3,"sources":[],"names":[],"mappings":
       currentDate: '',
       colMax: 3,
 
-      selectedCardData: {
-        card_id: '',
-        site_id: '',
-        group_id: '',
-        card_name: '',
-        url: '',
-        update_date: '',
-        insert_date: '',
-        img_url: ''
-      },
+      selectedCardId: null,
 
       options: [{
         value: 1,
@@ -70588,7 +70596,7 @@ exports.push([module.i, "\nimg[data-v-422a6aa6] {\n  cursor: pointer;\n}\n", "",
 
   methods: {
     handleClickImage() {
-      this.$emit('selected-card-data', this.card);
+      this.$emit('selected-card-id', this.card.card_id);
       this.openDetailDialog();
     },
 
@@ -70684,7 +70692,7 @@ var render = function() {
                     [
                       _c("screen-shot", {
                         attrs: { card: card, currentDate: _vm.currentDate },
-                        on: { "selected-card-data": _vm.setSelectedCardData }
+                        on: { "selected-card-id": _vm.setSelectedCardId }
                       })
                     ],
                     1

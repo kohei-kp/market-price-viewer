@@ -54,8 +54,8 @@ export default {
       Vue.set(this, 'currentDate', `${dt.getFullYear()}${dt.getMonth() + 1}${dt.getDate()}${dt.getHours()}${dt.getMinutes()}${dt.getMilliseconds()}`);
     },
 
-    setSelectedCardData(card) {
-      Vue.set(this, 'selectedCardData', card)
+    setSelectedCardId(cardId) {
+      this.selectedCardId = cardId
     },
   },
 
@@ -77,6 +77,23 @@ export default {
 
         return cards;
       }
+    },
+
+    selectedCardData () {
+      const cardData = this.card_list.find(card => {
+        this.selectedCardId === card.card_id
+      })
+
+      return cardData !== undefined ? cardData : {
+        card_id: '',
+        site_id: '',
+        group_id: '',
+        card_name: '',
+        url: '',
+        update_date: '',
+        insert_date: '',
+        img_url: ''
+      }
     }
   },
 
@@ -86,16 +103,7 @@ export default {
       currentDate: '',
       colMax: 3,
 
-      selectedCardData: {
-        card_id: '',
-        site_id: '',
-        group_id: '',
-        card_name: '',
-        url: '',
-        update_date: '',
-        insert_date: '',
-        img_url: ''
-      },
+      selectedCardId: null,
 
       options: [{
         value: 1,
