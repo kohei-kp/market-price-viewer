@@ -26,7 +26,7 @@ class Screenshot extends MY_Controller
 
         $site = $this->db_site->search(['site_id' => element('siteId', $_POST)]);
 
-        $this->lib_screenshot->takeScreenshot(
+        $objectURL = $this->lib_screenshot->takeScreenshot(
             element('url', $_POST),
             $site[0]->width,
             $site[0]->height,
@@ -37,7 +37,10 @@ class Screenshot extends MY_Controller
 
         $this->db_card->update(
             element('cardId', $_POST),
-            [ 'update_date' => $commit_date ]
+            [ 
+                'update_date' => $commit_date,
+                'img_url' => $objectURL
+           ]
         );
 
         $this->db_site->db->trans_complete();

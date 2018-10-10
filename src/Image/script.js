@@ -10,7 +10,6 @@ export default {
   },
 
   methods: {
-
     openDetailDialog(card) {
       bus.$emit('open-detail-card-dialog', card);
     }

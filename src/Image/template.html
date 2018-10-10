@@ -1,6 +1,6 @@
 <el-card :body-style="{ padding: '10px' }">
   <img
-    :src="`/assets/screenshot/${card.card_id}.jpg?${currentDate}`"
+    :src="`${card.img_url}`"
     width="100%"
     height="70%"
     @click="openDetailDialog(card)"

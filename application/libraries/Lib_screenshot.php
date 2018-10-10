@@ -36,6 +36,7 @@ class Lib_screenshot
      * @param integer $top
      * @param integer $left
      * @param string $filename
+     * @return string objectURL
      */
     public function takeScreenshot($url, $width, $height, $top, $left, $filename)
     {
@@ -53,13 +54,15 @@ class Lib_screenshot
             $this->phantomJsClient->send($request, $response);
 
             // S3に保存
-            $this->s3Client->putObject([
+            $result = $this->s3Client->putObject([
                 'Bucket' => getenv('AWS_S3_STORAGE'),
                 'Key' => 'myscreenshotviewer/' . $filename . '.jpg',
                 'Body' => fopen("{$_SERVER['DOCUMENT_ROOT']}/assets/screenshot/{$filename}.jpg", 'r')
             ]);
 
             unlink("{$_SERVER['DOCUMENT_ROOT']}/assets/screenshot/${filename}.jpg");
+
+            return $result['ObjectURL'];
         }
         catch (Exception $e)
         {

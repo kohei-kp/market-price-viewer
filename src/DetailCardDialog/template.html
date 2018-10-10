@@ -9,7 +9,7 @@
       <span>Last Update {{ card.update_date }}</span>
     </div>
     <div class="padding10">
-      <img :src="`/assets/screenshot/${card.card_id}.jpg?${currentDate}`" width="100%">
+      <img :src="`${card.img_url}`" width="100%">
     </div>
     <div class="padding10">
       <el-button type="info" @click="openOriginalPage(card.url)">
