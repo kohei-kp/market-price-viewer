@@ -83,7 +83,7 @@ export default {
   data() {
     return {
       card_list: [],
-      currentDate: ''
+      currentDate: '',
       colMax: 3,
 
       selectedCard: {

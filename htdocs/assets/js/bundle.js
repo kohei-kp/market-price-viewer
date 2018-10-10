@@ -70098,6 +70098,10 @@ exports.push([module.i, "", "", {"version":3,"sources":[],"names":[],"mappings":
     updateCurrentDate() {
       const dt = new Date();
       __WEBPACK_IMPORTED_MODULE_0_vue___default.a.set(this, 'currentDate', `${dt.getFullYear()}${dt.getMonth() + 1}${dt.getDate()}${dt.getHours()}${dt.getMinutes()}${dt.getMilliseconds()}`);
+    },
+
+    selectedCardData(card) {
+      __WEBPACK_IMPORTED_MODULE_0_vue___default.a.set(this, 'selectedCardData', card);
     }
   },
 
@@ -70127,6 +70131,17 @@ exports.push([module.i, "", "", {"version":3,"sources":[],"names":[],"mappings":
       card_list: [],
       currentDate: '',
       colMax: 3,
+
+      selectedCard: {
+        card_id: '',
+        site_id: '',
+        group_id: '',
+        card_name: '',
+        url: '',
+        update_date: '',
+        insert_date: '',
+        img_url: ''
+      },
 
       options: [{
         value: 1,
@@ -70271,13 +70286,27 @@ exports.push([module.i, "\n.padding10[data-v-4520c32d] {\n  padding: 10px 10px;\
   },
 
   props: {
-    currentDate: String
+    currentDate: String,
+    selectedCardData: {
+      types: Object,
+      default() {
+        return {
+          card_id: '',
+          site_id: '',
+          group_id: '',
+          card_name: '',
+          url: '',
+          update_date: '',
+          insert_date: '',
+          img_url: ''
+        };
+      }
+    }
   },
 
   methods: {
 
-    openDialog(card) {
-      __WEBPACK_IMPORTED_MODULE_0_vue___default.a.set(this, 'card', card);
+    openDialog() {
       __WEBPACK_IMPORTED_MODULE_0_vue___default.a.set(this, 'dialogDetailCardVisible', true);
     },
 
@@ -70305,7 +70334,6 @@ exports.push([module.i, "\n.padding10[data-v-4520c32d] {\n  padding: 10px 10px;\
       }).then(r => r.json()).then(data => {
         __WEBPACK_IMPORTED_MODULE_1__bus__["a" /* default */].$emit('update-currentdate');
         __WEBPACK_IMPORTED_MODULE_1__bus__["a" /* default */].$emit('draw-cardlist');
-        __WEBPACK_IMPORTED_MODULE_0_vue___default.a.set(this.card, 'update_date', data.update_date);
         this.fullscreenLoading = false;
       });
     }
@@ -70315,16 +70343,7 @@ exports.push([module.i, "\n.padding10[data-v-4520c32d] {\n  padding: 10px 10px;\
   data() {
     return {
       dialogDetailCardVisible: false,
-      fullscreenLoading: false,
-      card: {
-        card_id: '',
-        site_id: '',
-        group_id: '',
-        card_name: '',
-        url: '',
-        update_date: '',
-        insert_date: ''
-      }
+      fullscreenLoading: false
     };
   }
 
@@ -70352,7 +70371,7 @@ var render = function() {
         }
       ],
       attrs: {
-        title: _vm.card.card_name,
+        title: _vm.selectedCardData.card_name,
         visible: _vm.dialogDetailCardVisible,
         width: "40%"
       },
@@ -70365,11 +70384,15 @@ var render = function() {
     [
       _c("div", [
         _c("div", { staticClass: "padding10" }, [
-          _c("span", [_vm._v("Last Update " + _vm._s(_vm.card.update_date))])
+          _c("span", [
+            _vm._v("Last Update " + _vm._s(_vm.selectedCardData.update_date))
+          ])
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "padding10" }, [
-          _c("img", { attrs: { src: "" + _vm.card.img_url, width: "100%" } })
+          _c("img", {
+            attrs: { src: "" + _vm.selectedCardData.img_url, width: "100%" }
+          })
         ]),
         _vm._v(" "),
         _c(
@@ -70382,7 +70405,7 @@ var render = function() {
                 attrs: { type: "info" },
                 on: {
                   click: function($event) {
-                    _vm.openOriginalPage(_vm.card.url)
+                    _vm.openOriginalPage(_vm.selectedCardData.url)
                   }
                 }
               },
@@ -70406,9 +70429,9 @@ var render = function() {
                 on: {
                   click: function($event) {
                     _vm.updateImage(
-                      _vm.card.card_id,
-                      _vm.card.site_id,
-                      _vm.card.url
+                      _vm.selectedCardData.card_id,
+                      _vm.selectedCardData.site_id,
+                      _vm.selectedCardData.url
                     )
                   }
                 }
@@ -70564,10 +70587,14 @@ exports.push([module.i, "\nimg[data-v-422a6aa6] {\n  cursor: pointer;\n}\n", "",
   },
 
   methods: {
-    openDetailDialog(card) {
-      __WEBPACK_IMPORTED_MODULE_0__bus__["a" /* default */].$emit('open-detail-card-dialog', card);
-    }
+    handleClickImage() {
+      this.$emit('selected-card-data', card);
+      this.openDetailDialog();
+    },
 
+    openDetailDialog() {
+      __WEBPACK_IMPORTED_MODULE_0__bus__["a" /* default */].$emit('open-detail-card-dialog');
+    }
   }
 
 });
@@ -70584,11 +70611,7 @@ var render = function() {
   return _c("el-card", { attrs: { "body-style": { padding: "10px" } } }, [
     _c("img", {
       attrs: { src: "" + _vm.card.img_url, width: "100%", height: "70%" },
-      on: {
-        click: function($event) {
-          _vm.openDetailDialog(_vm.card)
-        }
-      }
+      on: { click: _vm.handleClickImage }
     }),
     _vm._v(" "),
     _c("div", { staticStyle: { padding: "14px" } }, [
@@ -70660,7 +70683,8 @@ var render = function() {
                     },
                     [
                       _c("screen-shot", {
-                        attrs: { card: card, currentDate: _vm.currentDate }
+                        attrs: { card: card, currentDate: _vm.currentDate },
+                        on: { "selected-card-data": _vm.setSelectedCardData }
                       })
                     ],
                     1
@@ -70673,7 +70697,12 @@ var render = function() {
         ]
       }),
       _vm._v(" "),
-      _c("detail-card-dialog", { attrs: { currentDate: _vm.currentDate } })
+      _c("detail-card-dialog", {
+        attrs: {
+          currentDate: _vm.currentDate,
+          selectedCardData: _vm.selectedCardData
+        }
+      })
     ],
     2
   )
