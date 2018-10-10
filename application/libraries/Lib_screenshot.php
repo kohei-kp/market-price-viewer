@@ -61,7 +61,7 @@ class Lib_screenshot
                 'ACL' => 'public-read'
             ]);
 
-            unlink("{$_SERVER['DOCUMENT_ROOT']}/assets/screenshot/${filename}.jpg");
+            unlink("{$_SERVER['DOCUMENT_ROOT']}/assets/screenshot/{$filename}.jpg");
 
             return $result['ObjectURL'];
         }

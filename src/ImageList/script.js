@@ -19,9 +19,9 @@ export default {
   },
 
   methods: {
-    drawCardList (group_id = null) {
-      if (group_id) {
-        this.fetchCardData({ group_id: group_id })
+    drawCardList (groupId = null) {
+      if (groupId) {
+        this.fetchCardData({ group_id: groupId })
       } else {
         this.fetchCardData()
       }
