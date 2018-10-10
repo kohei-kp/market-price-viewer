@@ -70127,8 +70127,11 @@ exports.push([module.i, "", "", {"version":3,"sources":[],"names":[],"mappings":
 
     selectedCardData() {
       const cardData = this.card_list.find(card => {
+        console.log(this.selectedCardId, card);
         String(this.selectedCardId) === String(card.card_id);
       });
+
+      console.log(cardData);
 
       return cardData !== undefined ? cardData : {
         card_id: '',
