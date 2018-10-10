@@ -69214,8 +69214,6 @@ exports.push([module.i, "", "", {"version":3,"sources":[],"names":[],"mappings":
     },
 
     openAddCardDialog(e) {
-      __WEBPACK_IMPORTED_MODULE_1__bus__["a" /* default */].$emit('fetch-group');
-      __WEBPACK_IMPORTED_MODULE_1__bus__["a" /* default */].$emit('fetch-site-data');
       __WEBPACK_IMPORTED_MODULE_1__bus__["a" /* default */].$emit('change-add-card-visible', true);
     },
 
@@ -69368,6 +69366,7 @@ exports.push([module.i, "", "", {"version":3,"sources":[],"names":[],"mappings":
         __WEBPACK_IMPORTED_MODULE_1__bus__["a" /* default */].$emit('change-add-group-visible', false);
         __WEBPACK_IMPORTED_MODULE_1__bus__["a" /* default */].$emit('draw-group');
         __WEBPACK_IMPORTED_MODULE_1__bus__["a" /* default */].$emit('draw-cardlist');
+        __WEBPACK_IMPORTED_MODULE_1__bus__["a" /* default */].$emit('fetch-group');
       });
     },
 
@@ -70305,7 +70304,7 @@ exports.push([module.i, "\n.padding10[data-v-4520c32d] {\n  padding: 10px 10px;\
         body: formData
       }).then(r => r.json()).then(data => {
         __WEBPACK_IMPORTED_MODULE_1__bus__["a" /* default */].$emit('update-currentdate');
-        __WEBPACK_IMPORTED_MODULE_1__bus__["a" /* default */].$emit('draw-card-list');
+        __WEBPACK_IMPORTED_MODULE_1__bus__["a" /* default */].$emit('draw-cardlist');
         __WEBPACK_IMPORTED_MODULE_0_vue___default.a.set(this.card, 'update_date', data.update_date);
         this.fullscreenLoading = false;
       });
