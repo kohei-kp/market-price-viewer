@@ -70377,7 +70377,13 @@ var render = function() {
         _vm._v(" "),
         _c("div", { staticClass: "padding10" }, [
           _c("img", {
-            attrs: { src: "" + _vm.selectedCardData.img_url, width: "100%" }
+            attrs: {
+              src:
+                "https://s3-cowhey.s3.ap-northeast-1.amazonaws.com/myscreenshotviewer/" +
+                _vm.selectedCardData.card_id +
+                ".jpg",
+              width: "100%"
+            }
           })
         ]),
         _vm._v(" "),
@@ -70594,7 +70600,14 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("el-card", { attrs: { "body-style": { padding: "10px" } } }, [
     _c("img", {
-      attrs: { src: "" + _vm.card.img_url, width: "100%", height: "70%" },
+      attrs: {
+        src:
+          "https://s3-cowhey.s3.ap-northeast-1.amazonaws.com/myscreenshotviewer/" +
+          _vm.card.card_id +
+          ".jpg",
+        width: "100%",
+        height: "70%"
+      },
       on: { click: _vm.handleClickImage }
     }),
     _vm._v(" "),

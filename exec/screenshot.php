@@ -55,11 +55,7 @@ try
             'Body' => fopen(__DIR__ . '/../htdocs/assets/screenshot/' . $result['card_id'] . '.jpg', 'r'),
             'ACL' => 'public-read'
         ]);
-           
         unlink(__DIR__ . '/../htdocs/assets/screenshot/' . $result['card_id'] . '.jpg');
-
-        $sql = 'UPDATE cards SET img_url = ' . $resultS3['ObjectURL'] . ' WHERE card_id = ' . $result['card_id'];
-        $dbh->query($sql);
     }
 }
 catch (Exception $e)

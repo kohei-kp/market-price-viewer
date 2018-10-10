@@ -62,8 +62,6 @@ class Lib_screenshot
             ]);
 
             unlink("{$_SERVER['DOCUMENT_ROOT']}/assets/screenshot/{$filename}.jpg");
-
-            return $result['ObjectURL'];
         }
         catch (Exception $e)
         {
