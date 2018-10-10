@@ -65,6 +65,7 @@ export default {
           bus.$emit('update-currentdate')
           bus.$emit('draw-cardlist')
           this.fullscreenLoading = false
+          this.$forceUpdate()
         })
     }
   },

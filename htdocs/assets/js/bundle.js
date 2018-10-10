@@ -70323,6 +70323,7 @@ exports.push([module.i, "\n.padding10[data-v-4520c32d] {\n  padding: 10px 10px;\
         __WEBPACK_IMPORTED_MODULE_1__bus__["a" /* default */].$emit('update-currentdate');
         __WEBPACK_IMPORTED_MODULE_1__bus__["a" /* default */].$emit('draw-cardlist');
         this.fullscreenLoading = false;
+        this.$forceUpdate();
       });
     }
   },
