@@ -4,7 +4,7 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
 require_once(__DIR__ . '/../../vendor/autoload.php');
 
 use JonnyW\PhantomJs\Client as PhantomJS;
-use Aws\S3\S3Client as AWS_S3;
+use Aws\S3\S3Client as Amazon_S3;
 
 class Lib_screenshot
 {
@@ -17,7 +17,7 @@ class Lib_screenshot
         $this->phantomJsClient = PhantomJS::getInstance();
         $this->phantomJsClient->getEngine()->setPath($_SERVER['DOCUMENT_ROOT'] . '/../vendor/jakoch/phantomjs/bin/phantomjs');
 
-        $this->s3Client = AWS_S3::factory([
+        $this->s3Client = new Amazon_S3([
             'credentials' => [
                 'key' => getenv('AWS_S3_ACCESS_KEY'),
                 'secret' => getenv('AWS_S3_SECRET_ACCESS_KEY')
@@ -39,24 +39,32 @@ class Lib_screenshot
      */
     public function takeScreenshot($url, $width, $height, $top, $left, $filename)
     {
-        $request = $this->phantomJsClient->getMessageFactory()->createCaptureRequest($url);
+        try
+        {
+            $request = $this->phantomJsClient->getMessageFactory()->createCaptureRequest($url);
+            $request->setCaptureDimensions($width, $height, $top, $left);
 
-        $request->setCaptureDimensions($width, $height, $top, $left);
+            $response = $this->phantomJsClient->getMessageFactory()->createResponse();
 
-        $response = $this->phantomJsClient->getMessageFactory()->createResponse();
+            // 保存先
+            $file = "{$_SERVER['DOCUMENT_ROOT']}/assets/screenshot/{$filename}.jpg";
+            $request->setOutputFile($file);
 
-        // 保存先
-        $file = "{$_SERVER['DOCUMENT_ROOT']}/assets/screenshot/{$filename}.jpg";
-        $request->setOutputFile($file);
+            $this->phantomJsClient->send($request, $response);
 
-        $this->phantomJsClient->send($request, $response);
+            // S3に保存
+            $this->s3Client->putObject([
+                'Bucket' => getenv('AWS_S3_STORAGE'),
+                'Key' => 'myscreenshotviewer/' . $filename . '.jpg',
+                'Body' => fopen("{$_SERVER['DOCUMENT_ROOT']}/assets/screenshot/{$filename}.jpg", 'r')
+            ]);
 
-        // S3に保存
-        $this->s3Client->putObject([
-            'Bucket' => getenv('AWS_S3_STORAGE'),
-            'Key' => 'myscreenshotviewer/' . $filename . '.jpg',
-            'Body' => fopen("{$_SERVER['DOCUMENT_ROOT']}/assets/screenshot/{$filename}.jpg", 'r')
-        ]);
+            unlink("{$_SERVER['DOCUMENT_ROOT']}/assets/screenshot/${filename}.jpg");
+        }
+        catch (Exception $e)
+        {
+            echo $e->getMessage();
+        }
     }
 
     /**
