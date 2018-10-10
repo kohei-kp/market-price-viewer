@@ -20,7 +20,7 @@ class Lib_screenshot
         $this->s3Client = AWS_S3::factory([
             'credentials' => [
                 'key' => getenv('AWS_S3_ACCESS_KEY'),
-                'secret' => getenv('AWS_S3_SECRET_KEY')
+                'secret' => getenv('AWS_S3_SECRET_ACCESS_KEY')
             ],
             'region' => 'ap-northeast-1',
             'version' => 'latest'
@@ -54,7 +54,7 @@ class Lib_screenshot
         // S3に保存
         $this->s3Client->putObject([
             'Bucket' => getenv('AWS_S3_STORAGE'),
-            'Key' => $filename . '.jpg',
+            'Key' => 'myscreenshotviewer/' . $filename . '.jpg',
             'Body' => fopen("{$_SERVER['DOCUMENT_ROOT']}/assets/screenshot/{$filename}.jpg", 'r')
         ]);
     }
