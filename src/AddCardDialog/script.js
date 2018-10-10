@@ -8,6 +8,8 @@ export default {
   created() {
     bus.$on('add-card', this.addCard);
     bus.$on('change-add-card-visible', this.changeVisible);
+    bus.$on('fetch-group', this.fetchGroupDate);
+    bus.$on('fetch-site-data', this.fetchSiteData);
     this.fetchGroupData();
     this.fetchSiteData();
   },

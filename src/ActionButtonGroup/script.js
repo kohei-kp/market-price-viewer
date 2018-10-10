@@ -19,6 +19,8 @@ export default {
     },
 
     openAddCardDialog(e) {
+      bus.$emit('fetch-group');
+      bus.$emit('fetch-site-data');
       bus.$emit('change-add-card-visible', true);
     },
 
