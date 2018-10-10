@@ -1,89 +1,86 @@
-import Vue from 'vue';
-import bus from '../bus';
+import Vue from 'vue'
+import bus from '../bus'
 
 export default {
+    name: 'AddCardDialog',
 
-  name: 'AddCardDialog',
-
-  created() {
-    bus.$on('add-card', this.addCard);
-    bus.$on('change-add-card-visible', this.changeVisible);
-    bus.$on('fetch-group', this.fetchGroupDate);
-    bus.$on('fetch-site-data', this.fetchSiteData);
-    this.fetchGroupData();
-    this.fetchSiteData();
-  },
-
-  methods: {
-
-    handleClickAddCardButton(e) {
-      bus.$emit('add-card', this.form);
+    created () {
+        bus.$on('add-card', this.addCard)
+        bus.$on('change-add-card-visible', this.changeVisible)
+        bus.$on('fetch-group', this.fetchGroupDate)
+        bus.$on('fetch-site-data', this.fetchSiteData)
+        this.fetchGroupData()
+        this.fetchSiteData()
     },
 
-    addCard(form = {}) {
-      const url = `${location.protocol}//${location.host}/index.php/api/v1/card/create`;
+    methods: {
+        handleClickAddCardButton (e) {
+            bus.$emit('add-card', this.form)
+        },
 
-      const formData = new FormData();
-      Object.keys(form).forEach(key => {
-        formData.append(key, form[key]);
-      });
+        addCard (form = {}) {
+            const url = `${location.protocol}//${location.host}/index.php/api/v1/card/create`
 
-      fetch(url, {
-        method: 'POST',
-        body: formData
-      })
-      .then(r => r.json())
-      .then(data => {
-        if (data.result === false) return;
+            const formData = new FormData()
+            Object.keys(form).forEach(key => {
+                formData.append(key, form[key])
+            })
 
-        bus.$emit('change-add-card-visible', false);
-        bus.$emit('draw-cardlist');
-      });
+            fetch(url, {
+                method: 'POST',
+                body: formData
+            })
+                .then(r => r.json())
+                .then(data => {
+                    if (data.result === false) return
+
+                    bus.$emit('change-add-card-visible', false)
+                    bus.$emit('draw-cardlist')
+                })
+        },
+
+        changeVisible (bool) {
+            Vue.set(this, 'dialogAddCardVisible', bool)
+        },
+
+        fetchGroupData () {
+            const url = `${location.protocol}//${location.host}/index.php/api/v1/group/search`
+
+            fetch(url)
+                .then(r => r.json())
+                .then(data => {
+                    if (data.result === false) return
+
+                    Vue.set(this, 'groupList', data.group_list)
+                })
+        },
+
+        fetchSiteData () {
+            const url = `${location.protocol}//${location.host}/index.php/api/v1/site/search`
+
+            fetch(url)
+                .then(r => r.json())
+                .then(data => {
+                    if (data.result === false) return
+
+                    Vue.set(this, 'siteList', data.site_list)
+                })
+        }
     },
 
-    changeVisible(bool) {
-      Vue.set(this, 'dialogAddCardVisible', bool);
-    },
+    data () {
+        return {
+            dialogAddCardVisible: false,
 
-    fetchGroupData() {
-      const url = `${location.protocol}//${location.host}/index.php/api/v1/group/search`
+            groupList: [],
+            siteList: [],
 
-      fetch(url)
-      .then(r => r.json())
-      .then(data => {
-        if (data.result === false) return;
-
-        Vue.set(this, 'groupList', data.group_list);
-      });
-    },
-
-    fetchSiteData() {
-      const url = `${location.protocol}//${location.host}/index.php/api/v1/site/search`;
-
-      fetch(url)
-      .then(r => r.json())
-      .then(data => {
-        if (data.result === false) return;
-
-        Vue.set(this, 'siteList', data.site_list);
-      });
+            form: {
+                groupId: '',
+                cardname: '',
+                url: '',
+                siteId: ''
+            }
+        }
     }
-
-  },
-
-  data() {
-    return {
-      dialogAddCardVisible: false,
-
-      groupList: [],
-      siteList: [],
-
-      form: {
-        groupId:  '',
-        cardname: '',
-        url:      '',
-        siteId:   ''
-      }
-    };
-  }
-};
+}
