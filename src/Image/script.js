@@ -11,7 +11,7 @@ export default {
 
   methods: {
     handleClickImage () {
-      this.$emit('selected-card-data', card);
+      this.$emit('selected-card-data', this.card);
       this.openDetailDialog()
     },
 

@@ -70132,7 +70132,7 @@ exports.push([module.i, "", "", {"version":3,"sources":[],"names":[],"mappings":
       currentDate: '',
       colMax: 3,
 
-      selectedCard: {
+      selectedCardData: {
         card_id: '',
         site_id: '',
         group_id: '',
@@ -70588,7 +70588,7 @@ exports.push([module.i, "\nimg[data-v-422a6aa6] {\n  cursor: pointer;\n}\n", "",
 
   methods: {
     handleClickImage() {
-      this.$emit('selected-card-data', card);
+      this.$emit('selected-card-data', this.card);
       this.openDetailDialog();
     },
 

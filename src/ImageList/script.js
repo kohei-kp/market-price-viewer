@@ -86,7 +86,7 @@ export default {
       currentDate: '',
       colMax: 3,
 
-      selectedCard: {
+      selectedCardData: {
         card_id: '',
         site_id: '',
         group_id: '',
