@@ -69214,6 +69214,8 @@ exports.push([module.i, "", "", {"version":3,"sources":[],"names":[],"mappings":
     },
 
     openAddCardDialog(e) {
+      __WEBPACK_IMPORTED_MODULE_1__bus__["a" /* default */].$emit('fetch-group');
+      __WEBPACK_IMPORTED_MODULE_1__bus__["a" /* default */].$emit('fetch-site-data');
       __WEBPACK_IMPORTED_MODULE_1__bus__["a" /* default */].$emit('change-add-card-visible', true);
     },
 
@@ -69593,6 +69595,8 @@ exports.push([module.i, "", "", {"version":3,"sources":[],"names":[],"mappings":
   created() {
     __WEBPACK_IMPORTED_MODULE_1__bus__["a" /* default */].$on('add-card', this.addCard);
     __WEBPACK_IMPORTED_MODULE_1__bus__["a" /* default */].$on('change-add-card-visible', this.changeVisible);
+    __WEBPACK_IMPORTED_MODULE_1__bus__["a" /* default */].$on('fetch-group', this.fetchGroupDate);
+    __WEBPACK_IMPORTED_MODULE_1__bus__["a" /* default */].$on('fetch-site-data', this.fetchSiteData);
     this.fetchGroupData();
     this.fetchSiteData();
   },
@@ -70301,6 +70305,7 @@ exports.push([module.i, "\n.padding10[data-v-4520c32d] {\n  padding: 10px 10px;\
         body: formData
       }).then(r => r.json()).then(data => {
         __WEBPACK_IMPORTED_MODULE_1__bus__["a" /* default */].$emit('update-currentdate');
+        __WEBPACK_IMPORTED_MODULE_1__bus__["a" /* default */].$emit('draw-card-list');
         __WEBPACK_IMPORTED_MODULE_0_vue___default.a.set(this.card, 'update_date', data.update_date);
         this.fullscreenLoading = false;
       });
