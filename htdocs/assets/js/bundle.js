@@ -15257,24 +15257,24 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_2_elem
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('icon', __WEBPACK_IMPORTED_MODULE_5_vue_awesome_components_Icon_vue__["a" /* default */]);
 
 const router = new __WEBPACK_IMPORTED_MODULE_1_vue_router__["a" /* default */]({
-    history: true,
-    saveScrollPosition: true,
-    routes: [{
-        path: '/',
-        component: __WEBPACK_IMPORTED_MODULE_7__Viewer_index_vue__["a" /* default */]
-    }, {
-        path: '/management',
-        component: __WEBPACK_IMPORTED_MODULE_8__Management_index_vue__["a" /* default */]
-    }]
+  history: true,
+  saveScrollPosition: true,
+  routes: [{
+    path: '/',
+    component: __WEBPACK_IMPORTED_MODULE_7__Viewer_index_vue__["a" /* default */]
+  }, {
+    path: '/management',
+    component: __WEBPACK_IMPORTED_MODULE_8__Management_index_vue__["a" /* default */]
+  }]
 });
 
 const vm = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
-    el: '#app',
-    components: {
-        app: __WEBPACK_IMPORTED_MODULE_6__App_index_vue__["a" /* default */]
-    },
-    router,
-    render: h => h('app')
+  el: '#app',
+  components: {
+    app: __WEBPACK_IMPORTED_MODULE_6__App_index_vue__["a" /* default */]
+  },
+  router,
+  render: h => h('app')
 });
 
 /***/ }),
@@ -68898,10 +68898,10 @@ exports.push([module.i, "\n.el-header[data-v-a2ad249a] {\n  background-color: #1
 
 "use strict";
 /* harmony default export */ __webpack_exports__["a"] = ({
-    name: 'App',
-    data: () => {
-        return {};
-    }
+  name: 'App',
+  data: () => {
+    return {};
+  }
 });
 
 /***/ }),
@@ -69053,40 +69053,40 @@ exports.push([module.i, "\n.el-header[data-v-1b458cd4] {\n  background-color: #1
 
 
 /* harmony default export */ __webpack_exports__["a"] = ({
-    name: 'App',
+  name: 'App',
 
-    components: {
-        'action-button-group': __WEBPACK_IMPORTED_MODULE_2__ActionButtonGroup_index_vue__["a" /* default */],
-        'image-list': __WEBPACK_IMPORTED_MODULE_3__ImageList_index_vue__["a" /* default */]
+  components: {
+    'action-button-group': __WEBPACK_IMPORTED_MODULE_2__ActionButtonGroup_index_vue__["a" /* default */],
+    'image-list': __WEBPACK_IMPORTED_MODULE_3__ImageList_index_vue__["a" /* default */]
+  },
+
+  created() {
+    __WEBPACK_IMPORTED_MODULE_1__bus__["a" /* default */].$on('draw-group', this.fetchGroupData);
+    this.fetchGroupData();
+  },
+
+  methods: {
+    fetchGroupData() {
+      const url = `${location.protocol}//${location.host}/index.php/api/v1/group/search`;
+
+      fetch(url).then(r => r.json()).then(data => {
+        if (data.result === false) return;
+
+        __WEBPACK_IMPORTED_MODULE_0_vue___default.a.set(this, 'group_list', data.group_list);
+      });
     },
 
-    created() {
-        __WEBPACK_IMPORTED_MODULE_1__bus__["a" /* default */].$on('draw-group', this.fetchGroupData);
-        this.fetchGroupData();
-    },
-
-    methods: {
-        fetchGroupData() {
-            const url = `${location.protocol}//${location.host}/index.php/api/v1/group/search`;
-
-            fetch(url).then(r => r.json()).then(data => {
-                if (data.result === false) return;
-
-                __WEBPACK_IMPORTED_MODULE_0_vue___default.a.set(this, 'group_list', data.group_list);
-            });
-        },
-
-        handleClickGroup(e) {
-            const groupId = e.$vnode.data.attrs.group_id;
-            __WEBPACK_IMPORTED_MODULE_1__bus__["a" /* default */].$emit('draw-cardlist', groupId);
-        }
-    },
-
-    data: () => {
-        return {
-            group_list: []
-        };
+    handleClickGroup(e) {
+      const groupId = e.$vnode.data.attrs.group_id;
+      __WEBPACK_IMPORTED_MODULE_1__bus__["a" /* default */].$emit('draw-cardlist', groupId);
     }
+  },
+
+  data: () => {
+    return {
+      group_list: []
+    };
+  }
 });
 
 /***/ }),
@@ -69196,30 +69196,30 @@ exports.push([module.i, "", "", {"version":3,"sources":[],"names":[],"mappings":
 
 
 /* harmony default export */ __webpack_exports__["a"] = ({
-    name: 'ActionButtonGroup',
+  name: 'ActionButtonGroup',
 
-    components: {
-        'add-group-dialog': __WEBPACK_IMPORTED_MODULE_1__AddGroupDialog_index_vue__["a" /* default */],
-        'add-card-dialog': __WEBPACK_IMPORTED_MODULE_2__AddCardDialog_index_vue__["a" /* default */]
+  components: {
+    'add-group-dialog': __WEBPACK_IMPORTED_MODULE_1__AddGroupDialog_index_vue__["a" /* default */],
+    'add-card-dialog': __WEBPACK_IMPORTED_MODULE_2__AddCardDialog_index_vue__["a" /* default */]
+  },
+
+  methods: {
+    openAddGroupDialog(e) {
+      __WEBPACK_IMPORTED_MODULE_0__bus__["a" /* default */].$emit('change-add-group-visible', true);
     },
 
-    methods: {
-        openAddGroupDialog(e) {
-            __WEBPACK_IMPORTED_MODULE_0__bus__["a" /* default */].$emit('change-add-group-visible', true);
-        },
-
-        openAddCardDialog(e) {
-            __WEBPACK_IMPORTED_MODULE_0__bus__["a" /* default */].$emit('change-add-card-visible', true);
-        },
-
-        openManagementPage(e) {
-            this.$router.push('management');
-        }
+    openAddCardDialog(e) {
+      __WEBPACK_IMPORTED_MODULE_0__bus__["a" /* default */].$emit('change-add-card-visible', true);
     },
 
-    data() {
-        return {};
+    openManagementPage(e) {
+      this.$router.push('management');
     }
+  },
+
+  data() {
+    return {};
+  }
 });
 
 /***/ }),
@@ -69328,53 +69328,53 @@ exports.push([module.i, "", "", {"version":3,"sources":[],"names":[],"mappings":
 
 
 /* harmony default export */ __webpack_exports__["a"] = ({
-    name: 'AddGroupDialog',
+  name: 'AddGroupDialog',
 
-    created() {
-        __WEBPACK_IMPORTED_MODULE_1__bus__["a" /* default */].$on('add-group', this.addGroup);
-        __WEBPACK_IMPORTED_MODULE_1__bus__["a" /* default */].$on('change-add-group-visible', this.changeVisible);
+  created() {
+    __WEBPACK_IMPORTED_MODULE_1__bus__["a" /* default */].$on('add-group', this.addGroup);
+    __WEBPACK_IMPORTED_MODULE_1__bus__["a" /* default */].$on('change-add-group-visible', this.changeVisible);
+  },
+
+  methods: {
+    handleClickAddGroupButton(e) {
+      if (this.form.groupname && this.form.groupname !== '') {
+        __WEBPACK_IMPORTED_MODULE_1__bus__["a" /* default */].$emit('add-group', this.form.groupname);
+      }
     },
 
-    methods: {
-        handleClickAddGroupButton(e) {
-            if (this.form.groupname && this.form.groupname !== '') {
-                __WEBPACK_IMPORTED_MODULE_1__bus__["a" /* default */].$emit('add-group', this.form.groupname);
-            }
-        },
+    addGroup(groupname) {
+      const url = `${location.protocol}//${location.host}/index.php/api/v1/group/create`;
 
-        addGroup(groupname) {
-            const url = `${location.protocol}//${location.host}/index.php/api/v1/group/create`;
+      const formData = new FormData();
+      formData.append('groupname', groupname);
 
-            const formData = new FormData();
-            formData.append('groupname', groupname);
+      fetch(url, {
+        method: 'POST',
+        body: formData
+      }).then(r => r.json()).then(data => {
+        if (data.result === false) return;
 
-            fetch(url, {
-                method: 'POST',
-                body: formData
-            }).then(r => r.json()).then(data => {
-                if (data.result === false) return;
-
-                __WEBPACK_IMPORTED_MODULE_1__bus__["a" /* default */].$emit('change-add-group-visible', false);
-                __WEBPACK_IMPORTED_MODULE_1__bus__["a" /* default */].$emit('draw-group');
-                __WEBPACK_IMPORTED_MODULE_1__bus__["a" /* default */].$emit('draw-cardlist');
-                __WEBPACK_IMPORTED_MODULE_1__bus__["a" /* default */].$emit('fetch-group');
-            });
-        },
-
-        changeVisible(bool) {
-            __WEBPACK_IMPORTED_MODULE_0_vue___default.a.set(this, 'dialogAddGroupVisible', bool);
-        }
+        __WEBPACK_IMPORTED_MODULE_1__bus__["a" /* default */].$emit('change-add-group-visible', false);
+        __WEBPACK_IMPORTED_MODULE_1__bus__["a" /* default */].$emit('draw-group');
+        __WEBPACK_IMPORTED_MODULE_1__bus__["a" /* default */].$emit('draw-cardlist');
+        __WEBPACK_IMPORTED_MODULE_1__bus__["a" /* default */].$emit('fetch-group');
+      });
     },
 
-    data() {
-        return {
-            dialogAddGroupVisible: false,
-
-            form: {
-                groupname: ''
-            }
-        };
+    changeVisible(bool) {
+      __WEBPACK_IMPORTED_MODULE_0_vue___default.a.set(this, 'dialogAddGroupVisible', bool);
     }
+  },
+
+  data() {
+    return {
+      dialogAddGroupVisible: false,
+
+      form: {
+        groupname: ''
+      }
+    };
+  }
 });
 
 /***/ }),
@@ -69577,81 +69577,81 @@ exports.push([module.i, "", "", {"version":3,"sources":[],"names":[],"mappings":
 
 
 /* harmony default export */ __webpack_exports__["a"] = ({
-    name: 'AddCardDialog',
+  name: 'AddCardDialog',
 
-    created() {
-        __WEBPACK_IMPORTED_MODULE_1__bus__["a" /* default */].$on('add-card', this.addCard);
-        __WEBPACK_IMPORTED_MODULE_1__bus__["a" /* default */].$on('change-add-card-visible', this.changeVisible);
-        __WEBPACK_IMPORTED_MODULE_1__bus__["a" /* default */].$on('fetch-group', this.fetchGroupDate);
-        __WEBPACK_IMPORTED_MODULE_1__bus__["a" /* default */].$on('fetch-site-data', this.fetchSiteData);
-        this.fetchGroupData();
-        this.fetchSiteData();
+  created() {
+    __WEBPACK_IMPORTED_MODULE_1__bus__["a" /* default */].$on('add-card', this.addCard);
+    __WEBPACK_IMPORTED_MODULE_1__bus__["a" /* default */].$on('change-add-card-visible', this.changeVisible);
+    __WEBPACK_IMPORTED_MODULE_1__bus__["a" /* default */].$on('fetch-group', this.fetchGroupDate);
+    __WEBPACK_IMPORTED_MODULE_1__bus__["a" /* default */].$on('fetch-site-data', this.fetchSiteData);
+    this.fetchGroupData();
+    this.fetchSiteData();
+  },
+
+  methods: {
+    handleClickAddCardButton(e) {
+      __WEBPACK_IMPORTED_MODULE_1__bus__["a" /* default */].$emit('add-card', this.form);
     },
 
-    methods: {
-        handleClickAddCardButton(e) {
-            __WEBPACK_IMPORTED_MODULE_1__bus__["a" /* default */].$emit('add-card', this.form);
-        },
+    addCard(form = {}) {
+      const url = `${location.protocol}//${location.host}/index.php/api/v1/card/create`;
 
-        addCard(form = {}) {
-            const url = `${location.protocol}//${location.host}/index.php/api/v1/card/create`;
+      const formData = new FormData();
+      Object.keys(form).forEach(key => {
+        formData.append(key, form[key]);
+      });
 
-            const formData = new FormData();
-            Object.keys(form).forEach(key => {
-                formData.append(key, form[key]);
-            });
+      fetch(url, {
+        method: 'POST',
+        body: formData
+      }).then(r => r.json()).then(data => {
+        if (data.result === false) return;
 
-            fetch(url, {
-                method: 'POST',
-                body: formData
-            }).then(r => r.json()).then(data => {
-                if (data.result === false) return;
-
-                __WEBPACK_IMPORTED_MODULE_1__bus__["a" /* default */].$emit('change-add-card-visible', false);
-                __WEBPACK_IMPORTED_MODULE_1__bus__["a" /* default */].$emit('draw-cardlist');
-            });
-        },
-
-        changeVisible(bool) {
-            __WEBPACK_IMPORTED_MODULE_0_vue___default.a.set(this, 'dialogAddCardVisible', bool);
-        },
-
-        fetchGroupData() {
-            const url = `${location.protocol}//${location.host}/index.php/api/v1/group/search`;
-
-            fetch(url).then(r => r.json()).then(data => {
-                if (data.result === false) return;
-
-                __WEBPACK_IMPORTED_MODULE_0_vue___default.a.set(this, 'groupList', data.group_list);
-            });
-        },
-
-        fetchSiteData() {
-            const url = `${location.protocol}//${location.host}/index.php/api/v1/site/search`;
-
-            fetch(url).then(r => r.json()).then(data => {
-                if (data.result === false) return;
-
-                __WEBPACK_IMPORTED_MODULE_0_vue___default.a.set(this, 'siteList', data.site_list);
-            });
-        }
+        __WEBPACK_IMPORTED_MODULE_1__bus__["a" /* default */].$emit('change-add-card-visible', false);
+        __WEBPACK_IMPORTED_MODULE_1__bus__["a" /* default */].$emit('draw-cardlist');
+      });
     },
 
-    data() {
-        return {
-            dialogAddCardVisible: false,
+    changeVisible(bool) {
+      __WEBPACK_IMPORTED_MODULE_0_vue___default.a.set(this, 'dialogAddCardVisible', bool);
+    },
 
-            groupList: [],
-            siteList: [],
+    fetchGroupData() {
+      const url = `${location.protocol}//${location.host}/index.php/api/v1/group/search`;
 
-            form: {
-                groupId: '',
-                cardname: '',
-                url: '',
-                siteId: ''
-            }
-        };
+      fetch(url).then(r => r.json()).then(data => {
+        if (data.result === false) return;
+
+        __WEBPACK_IMPORTED_MODULE_0_vue___default.a.set(this, 'groupList', data.group_list);
+      });
+    },
+
+    fetchSiteData() {
+      const url = `${location.protocol}//${location.host}/index.php/api/v1/site/search`;
+
+      fetch(url).then(r => r.json()).then(data => {
+        if (data.result === false) return;
+
+        __WEBPACK_IMPORTED_MODULE_0_vue___default.a.set(this, 'siteList', data.site_list);
+      });
     }
+  },
+
+  data() {
+    return {
+      dialogAddCardVisible: false,
+
+      groupList: [],
+      siteList: [],
+
+      form: {
+        groupId: '',
+        cardname: '',
+        url: '',
+        siteId: ''
+      }
+    };
+  }
 });
 
 /***/ }),
@@ -70038,122 +70038,122 @@ exports.push([module.i, "", "", {"version":3,"sources":[],"names":[],"mappings":
 
 
 /* harmony default export */ __webpack_exports__["a"] = ({
-    name: 'ImageList',
+  name: 'ImageList',
 
-    components: {
-        'screen-shot': __WEBPACK_IMPORTED_MODULE_3__Image_index_vue__["a" /* default */],
-        'detail-card-dialog': __WEBPACK_IMPORTED_MODULE_2__DetailCardDialog_index_vue__["a" /* default */]
-    },
+  components: {
+    'screen-shot': __WEBPACK_IMPORTED_MODULE_3__Image_index_vue__["a" /* default */],
+    'detail-card-dialog': __WEBPACK_IMPORTED_MODULE_2__DetailCardDialog_index_vue__["a" /* default */]
+  },
 
-    created() {
-        __WEBPACK_IMPORTED_MODULE_1__bus__["a" /* default */].$on('draw-cardlist', this.drawCardList);
-        __WEBPACK_IMPORTED_MODULE_1__bus__["a" /* default */].$on('update-currentdate', this.updateCurrentDate);
-        this.updateCurrentDate();
+  created() {
+    __WEBPACK_IMPORTED_MODULE_1__bus__["a" /* default */].$on('draw-cardlist', this.drawCardList);
+    __WEBPACK_IMPORTED_MODULE_1__bus__["a" /* default */].$on('update-currentdate', this.updateCurrentDate);
+    this.updateCurrentDate();
+    this.fetchCardData();
+  },
+
+  methods: {
+    drawCardList(groupId = null) {
+      if (groupId) {
+        this.fetchCardData({ group_id: groupId });
+      } else {
         this.fetchCardData();
+      }
     },
 
-    methods: {
-        drawCardList(group_id = null) {
-            if (group_id) {
-                this.fetchCardData({ group_id: group_id });
-            } else {
-                this.fetchCardData();
-            }
-        },
+    fetchCardData(options = {}) {
+      const url = `${location.protocol}//${location.host}/index.php/api/v1/card/search`;
 
-        fetchCardData(options = {}) {
-            const url = `${location.protocol}//${location.host}/index.php/api/v1/card/search`;
+      const formData = new FormData();
+      Object.keys(options).forEach(key => {
+        formData.append(key, options[key]);
+      });
 
-            const formData = new FormData();
-            Object.keys(options).forEach(key => {
-                formData.append(key, options[key]);
-            });
+      fetch(url, {
+        method: 'POST',
+        body: formData
+      }).then(r => r.json()).then(data => {
+        if (data.result === false) return;
 
-            fetch(url, {
-                method: 'POST',
-                body: formData
-            }).then(r => r.json()).then(data => {
-                if (data.result === false) return;
-
-                __WEBPACK_IMPORTED_MODULE_0_vue___default.a.set(this, 'card_list', data.card_list);
-            });
-        },
-
-        updateCurrentDate() {
-            const dt = new Date();
-            __WEBPACK_IMPORTED_MODULE_0_vue___default.a.set(this, 'currentDate', `${dt.getFullYear()}${dt.getMonth() + 1}${dt.getDate()}${dt.getHours()}${dt.getMinutes()}${dt.getMilliseconds()}`);
-        },
-
-        setSelectedCardId(cardId) {
-            this.selectedCardId = cardId;
-        }
+        __WEBPACK_IMPORTED_MODULE_0_vue___default.a.set(this, 'card_list', data.card_list);
+      });
     },
 
-    computed: {
-        separateCardList() {
-            const cards = [];
-            const listLength = this.card_list.length;
-
-            if (listLength === 0) {
-                return cards;
-            } else if (this.colMax === 0) {
-                return cards.push(this.card_list);
-            } else {
-                for (let i = 0; i < Math.ceil(listLength / this.colMax); i++) {
-                    const minRange = i * this.colMax;
-                    cards.push(this.card_list.slice(minRange, minRange + this.colMax));
-                }
-
-                return cards;
-            }
-        },
-
-        selectedCardData() {
-            const cardData = this.card_list.find(card => {
-                return String(this.selectedCardId) === String(card.card_id);
-            });
-
-            return cardData !== undefined ? cardData : {
-                card_id: '',
-                site_id: '',
-                group_id: '',
-                card_name: '',
-                url: '',
-                update_date: '',
-                insert_date: '',
-                img_url: ''
-            };
-        }
+    updateCurrentDate() {
+      const dt = new Date();
+      __WEBPACK_IMPORTED_MODULE_0_vue___default.a.set(this, 'currentDate', `${dt.getFullYear()}${dt.getMonth() + 1}${dt.getDate()}${dt.getHours()}${dt.getMinutes()}${dt.getMilliseconds()}`);
     },
 
-    data() {
-        return {
-            card_list: [],
-            currentDate: '',
-            colMax: 3,
-
-            selectedCardId: null,
-
-            options: [{
-                value: 1,
-                label: '1 column'
-            }, {
-                value: 2,
-                label: '2 column'
-            }, {
-                value: 3,
-                label: '3 column'
-            }, {
-                value: 4,
-                label: '4 column'
-            }, {
-                value: 5,
-                label: '5 column'
-            }],
-
-            cardSpanTable: [24, 11, 7, 5, 4]
-        };
+    setSelectedCardId(cardId) {
+      this.selectedCardId = cardId;
     }
+  },
+
+  computed: {
+    separateCardList() {
+      const cards = [];
+      const listLength = this.card_list.length;
+
+      if (listLength === 0) {
+        return cards;
+      } else if (this.colMax === 0) {
+        return cards.push(this.card_list);
+      } else {
+        for (let i = 0; i < Math.ceil(listLength / this.colMax); i++) {
+          const minRange = i * this.colMax;
+          cards.push(this.card_list.slice(minRange, minRange + this.colMax));
+        }
+
+        return cards;
+      }
+    },
+
+    selectedCardData() {
+      const cardData = this.card_list.find(card => {
+        return String(this.selectedCardId) === String(card.card_id);
+      });
+
+      return cardData !== undefined ? cardData : {
+        card_id: '',
+        site_id: '',
+        group_id: '',
+        card_name: '',
+        url: '',
+        update_date: '',
+        insert_date: '',
+        img_url: ''
+      };
+    }
+  },
+
+  data() {
+    return {
+      card_list: [],
+      currentDate: '',
+      colMax: 3,
+
+      selectedCardId: null,
+
+      options: [{
+        value: 1,
+        label: '1 column'
+      }, {
+        value: 2,
+        label: '2 column'
+      }, {
+        value: 3,
+        label: '3 column'
+      }, {
+        value: 4,
+        label: '4 column'
+      }, {
+        value: 5,
+        label: '5 column'
+      }],
+
+      cardSpanTable: [24, 11, 7, 5, 4]
+    };
+  }
 });
 
 /***/ }),
@@ -70262,77 +70262,77 @@ exports.push([module.i, "\n.padding10[data-v-4520c32d] {\n  padding: 10px 10px;\
 
 
 /* harmony default export */ __webpack_exports__["a"] = ({
-    name: 'DetailCardDialog',
+  name: 'DetailCardDialog',
 
-    created() {
-        __WEBPACK_IMPORTED_MODULE_1__bus__["a" /* default */].$on('open-detail-card-dialog', this.openDialog);
-    },
-    updated() {
-        __WEBPACK_IMPORTED_MODULE_1__bus__["a" /* default */].$on('open-detail-card-dialog', this.openDialog);
-    },
-    destroyed() {
-        __WEBPACK_IMPORTED_MODULE_1__bus__["a" /* default */].$on('open-detail-card-dialog', this.openDialog);
-    },
+  created() {
+    __WEBPACK_IMPORTED_MODULE_1__bus__["a" /* default */].$on('open-detail-card-dialog', this.openDialog);
+  },
+  updated() {
+    __WEBPACK_IMPORTED_MODULE_1__bus__["a" /* default */].$on('open-detail-card-dialog', this.openDialog);
+  },
+  destroyed() {
+    __WEBPACK_IMPORTED_MODULE_1__bus__["a" /* default */].$on('open-detail-card-dialog', this.openDialog);
+  },
 
-    props: {
-        currentDate: String,
-        selectedCardData: {
-            types: Object,
-            default() {
-                return {
-                    card_id: '',
-                    site_id: '',
-                    group_id: '',
-                    card_name: '',
-                    url: '',
-                    update_date: '',
-                    insert_date: '',
-                    img_url: ''
-                };
-            }
-        }
-    },
-
-    methods: {
-        openDialog() {
-            __WEBPACK_IMPORTED_MODULE_0_vue___default.a.set(this, 'dialogDetailCardVisible', true);
-        },
-
-        closeDialog() {
-            __WEBPACK_IMPORTED_MODULE_0_vue___default.a.set(this, 'dialogDetailCardVisible', false);
-        },
-
-        openOriginalPage(url) {
-            window.open(url, '_blank');
-        },
-
-        updateImage(cardId, siteId, pageUrl) {
-            this.fullscreenLoading = true;
-
-            const url = `${location.protocol}//${location.host}/index.php/api/v1/screenshot/update`;
-
-            const formData = new FormData();
-            formData.append('cardId', cardId);
-            formData.append('siteId', siteId);
-            formData.append('url', pageUrl);
-
-            fetch(url, {
-                method: 'POST',
-                body: formData
-            }).then(r => r.json()).then(data => {
-                __WEBPACK_IMPORTED_MODULE_1__bus__["a" /* default */].$emit('update-currentdate');
-                __WEBPACK_IMPORTED_MODULE_1__bus__["a" /* default */].$emit('draw-cardlist');
-                this.fullscreenLoading = false;
-            });
-        }
-    },
-
-    data() {
+  props: {
+    currentDate: String,
+    selectedCardData: {
+      types: Object,
+      default() {
         return {
-            dialogDetailCardVisible: false,
-            fullscreenLoading: false
+          card_id: '',
+          site_id: '',
+          group_id: '',
+          card_name: '',
+          url: '',
+          update_date: '',
+          insert_date: '',
+          img_url: ''
         };
+      }
     }
+  },
+
+  methods: {
+    openDialog() {
+      __WEBPACK_IMPORTED_MODULE_0_vue___default.a.set(this, 'dialogDetailCardVisible', true);
+    },
+
+    closeDialog() {
+      __WEBPACK_IMPORTED_MODULE_0_vue___default.a.set(this, 'dialogDetailCardVisible', false);
+    },
+
+    openOriginalPage(url) {
+      window.open(url, '_blank');
+    },
+
+    updateImage(cardId, siteId, pageUrl) {
+      this.fullscreenLoading = true;
+
+      const url = `${location.protocol}//${location.host}/index.php/api/v1/screenshot/update`;
+
+      const formData = new FormData();
+      formData.append('cardId', cardId);
+      formData.append('siteId', siteId);
+      formData.append('url', pageUrl);
+
+      fetch(url, {
+        method: 'POST',
+        body: formData
+      }).then(r => r.json()).then(data => {
+        __WEBPACK_IMPORTED_MODULE_1__bus__["a" /* default */].$emit('update-currentdate');
+        __WEBPACK_IMPORTED_MODULE_1__bus__["a" /* default */].$emit('draw-cardlist');
+        this.fullscreenLoading = false;
+      });
+    }
+  },
+
+  data() {
+    return {
+      dialogDetailCardVisible: false,
+      fullscreenLoading: false
+    };
+  }
 });
 
 /***/ }),
@@ -70564,23 +70564,23 @@ exports.push([module.i, "\nimg[data-v-422a6aa6] {\n  cursor: pointer;\n}\n", "",
 
 
 /* harmony default export */ __webpack_exports__["a"] = ({
-    name: 'ScreenShot',
+  name: 'ScreenShot',
 
-    props: {
-        card: Object,
-        currentDate: String
+  props: {
+    card: Object,
+    currentDate: String
+  },
+
+  methods: {
+    handleClickImage() {
+      this.$emit('selected-card-id', this.card.card_id);
+      this.openDetailDialog();
     },
 
-    methods: {
-        handleClickImage() {
-            this.$emit('selected-card-id', this.card.card_id);
-            this.openDetailDialog();
-        },
-
-        openDetailDialog() {
-            __WEBPACK_IMPORTED_MODULE_0__bus__["a" /* default */].$emit('open-detail-card-dialog');
-        }
+    openDetailDialog() {
+      __WEBPACK_IMPORTED_MODULE_0__bus__["a" /* default */].$emit('open-detail-card-dialog');
     }
+  }
 });
 
 /***/ }),
@@ -70896,19 +70896,19 @@ exports.push([module.i, "\n#management-tab[data-v-79439a07] {\n  padding: 5px 5p
 
 /* harmony default export */ __webpack_exports__["a"] = ({
 
-    name: 'Management',
+  name: 'Management',
 
-    components: {
-        'group-management': __WEBPACK_IMPORTED_MODULE_0__GroupManagement_index_vue__["a" /* default */],
-        'card-management': __WEBPACK_IMPORTED_MODULE_1__CardManagement_index_vue__["a" /* default */],
-        'site-management': __WEBPACK_IMPORTED_MODULE_2__SiteManagement_index_vue__["a" /* default */]
-    },
+  components: {
+    'group-management': __WEBPACK_IMPORTED_MODULE_0__GroupManagement_index_vue__["a" /* default */],
+    'card-management': __WEBPACK_IMPORTED_MODULE_1__CardManagement_index_vue__["a" /* default */],
+    'site-management': __WEBPACK_IMPORTED_MODULE_2__SiteManagement_index_vue__["a" /* default */]
+  },
 
-    data: () => {
-        return {
-            activeName: 'first'
-        };
-    }
+  data: () => {
+    return {
+      activeName: 'first'
+    };
+  }
 
 });
 
@@ -71016,29 +71016,29 @@ exports.push([module.i, "", "", {"version":3,"sources":[],"names":[],"mappings":
 
 
 /* harmony default export */ __webpack_exports__["a"] = ({
-    name: 'GroupManagement',
+  name: 'GroupManagement',
 
-    created() {
-        this.fetchGroupData();
-    },
+  created() {
+    this.fetchGroupData();
+  },
 
-    methods: {
-        fetchGroupData() {
-            const url = `${location.protocol}//${location.host}/index.php/api/v1/group/search`;
+  methods: {
+    fetchGroupData() {
+      const url = `${location.protocol}//${location.host}/index.php/api/v1/group/search`;
 
-            fetch(url).then(r => r.json()).then(data => {
-                if (data.result === false) return;
-                console.log(data.group_list);
-                __WEBPACK_IMPORTED_MODULE_0_vue___default.a.set(this, 'groupList', data.group_list);
-            });
-        }
-    },
-
-    data: () => {
-        return {
-            groupList: []
-        };
+      fetch(url).then(r => r.json()).then(data => {
+        if (data.result === false) return;
+        console.log(data.group_list);
+        __WEBPACK_IMPORTED_MODULE_0_vue___default.a.set(this, 'groupList', data.group_list);
+      });
     }
+  },
+
+  data: () => {
+    return {
+      groupList: []
+    };
+  }
 });
 
 /***/ }),
@@ -71214,29 +71214,29 @@ exports.push([module.i, "", "", {"version":3,"sources":[],"names":[],"mappings":
 
 
 /* harmony default export */ __webpack_exports__["a"] = ({
-    name: 'CardManagement',
+  name: 'CardManagement',
 
-    created() {
-        this.fetchCardData();
-    },
+  created() {
+    this.fetchCardData();
+  },
 
-    methods: {
-        fetchCardData() {
-            const url = `${location.protocol}//${location.host}/index.php/api/v1/card/search`;
+  methods: {
+    fetchCardData() {
+      const url = `${location.protocol}//${location.host}/index.php/api/v1/card/search`;
 
-            fetch(url).then(r => r.json()).then(data => {
-                if (data.result === false) return;
+      fetch(url).then(r => r.json()).then(data => {
+        if (data.result === false) return;
 
-                __WEBPACK_IMPORTED_MODULE_0_vue___default.a.set(this, 'cardList', data.card_list);
-            });
-        }
-    },
-
-    data: () => {
-        return {
-            cardList: []
-        };
+        __WEBPACK_IMPORTED_MODULE_0_vue___default.a.set(this, 'cardList', data.card_list);
+      });
     }
+  },
+
+  data: () => {
+    return {
+      cardList: []
+    };
+  }
 });
 
 /***/ }),
@@ -71415,29 +71415,29 @@ exports.push([module.i, "", "", {"version":3,"sources":[],"names":[],"mappings":
 
 /* harmony default export */ __webpack_exports__["a"] = ({
 
-    name: 'SiteManagement',
+  name: 'SiteManagement',
 
-    created() {
-        this.fetchSiteData();
-    },
+  created() {
+    this.fetchSiteData();
+  },
 
-    methods: {
-        fetchSiteData() {
-            const url = `${location.protocol}//${location.host}/index.php/api/v1/site/search`;
+  methods: {
+    fetchSiteData() {
+      const url = `${location.protocol}//${location.host}/index.php/api/v1/site/search`;
 
-            fetch(url).then(r => r.json()).then(data => {
-                if (data.result === false) return;
+      fetch(url).then(r => r.json()).then(data => {
+        if (data.result === false) return;
 
-                __WEBPACK_IMPORTED_MODULE_0_vue___default.a.set(this, 'siteList', data.site_list);
-            });
-        }
-    },
-
-    data: () => {
-        return {
-            siteList: []
-        };
+        __WEBPACK_IMPORTED_MODULE_0_vue___default.a.set(this, 'siteList', data.site_list);
+      });
     }
+  },
+
+  data: () => {
+    return {
+      siteList: []
+    };
+  }
 
 });
 
