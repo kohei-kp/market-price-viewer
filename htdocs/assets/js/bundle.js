@@ -70382,7 +70382,8 @@ var render = function() {
               src:
                 "https://s3-cowhey.s3.ap-northeast-1.amazonaws.com/myscreenshotviewer/" +
                 _vm.selectedCardData.card_id +
-                ".jpg",
+                ".jpg?date=" +
+                _vm.currentDate,
               width: "100%"
             }
           })
