@@ -35,6 +35,7 @@ export default {
         bus.$emit('change-add-group-visible', false);
         bus.$emit('draw-group');
         bus.$emit('draw-cardlist');
+        bus.$emit('fetch-group');
       });
     },
 

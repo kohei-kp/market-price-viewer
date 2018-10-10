@@ -51,7 +51,7 @@ export default {
       .then(r => r.json())
       .then(data => {
         bus.$emit('update-currentdate');
-        bus.$emit('draw-card-list');
+        bus.$emit('draw-cardlist');
         Vue.set(this.card, 'update_date', data.update_date);
         this.fullscreenLoading = false;
       });
