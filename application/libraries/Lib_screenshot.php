@@ -16,6 +16,7 @@ class Lib_screenshot
     {
         $this->phantomJsClient = PhantomJS::getInstance();
         $this->phantomJsClient->getEngine()->setPath($_SERVER['DOCUMENT_ROOT'] . '/../vendor/jakoch/phantomjs/bin/phantomjs');
+        $this->phantomJsClient->getEngine()->debug(true);
 
         $this->s3Client = new Amazon_S3([
             'credentials' => [
